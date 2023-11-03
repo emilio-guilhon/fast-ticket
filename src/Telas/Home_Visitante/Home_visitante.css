@@ -1,0 +1,17 @@
+.body{
+    background-color: white;
+    min-height:1000px;
+    margin-top: 80px; /* espaço minimo para a navbar não interferi com a info da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: flex-start; /* Alinhe no topo da tela */
+
+}
+
+.Evento-principal{
+    background-color: gray;
+    height: 400px;
+    width: 800px;
+    margin-top: 20px; /* Ajuste a margem superior para posicionar um pouco mais acima */
+}
