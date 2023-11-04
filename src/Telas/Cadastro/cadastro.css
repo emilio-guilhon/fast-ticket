@@ -83,7 +83,6 @@
   justify-content: center;
   margin-top: 29px;
   margin-bottom: 5px;
-  gap: 10px;
 }
 .container form button:hover {
   cursor: pointer;
