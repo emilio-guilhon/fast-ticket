@@ -1,12 +1,11 @@
-import React from 'react';
-import Home_Visitante from './Telas/Home_Visitante/Home_Visitante';
-
+import React from "react";
+import Cadastro from "./Telas/Cadastro/Cadastro.jsx";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Home_Visitante/>
+        <Cadastro />
       </header>
     </div>
   );
