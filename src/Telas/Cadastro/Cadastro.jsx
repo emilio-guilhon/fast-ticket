@@ -1,11 +1,14 @@
 import React from "react";
 import "./cadastro.css";
+import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCadastro";
+
 
 function Cadastro() {
   return (
     <div className="container">
       <div className="wrap-login">
         <header className="header">
+          <Navbar_LoginCadastro/>
           <span>Criar conta</span>
         </header>
         <form>
@@ -55,7 +58,7 @@ function Cadastro() {
           <button className="Button">Cadastrar</button>
           <div className="footer">
             <p>Já possui cadastro?</p>
-            <a href="">Clique Aqui</a>
+            <a href="/">Clique Aqui</a>
           </div>
         </form>
       </div>
