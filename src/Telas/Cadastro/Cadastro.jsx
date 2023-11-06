@@ -2,13 +2,12 @@ import React from "react";
 import "./cadastro.css";
 import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCadastro";
 
-
 function Cadastro() {
   return (
     <div className="container">
       <div className="wrap-cadastro">
         <header className="header">
-          <Navbar_LoginCadastro/>
+          <Navbar_LoginCadastro />
           <span>Criar conta</span>
         </header>
         <form>

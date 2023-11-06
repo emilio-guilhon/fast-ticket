@@ -1,98 +1,95 @@
 .navbar-body {
-    background-color: #3F434A;
-    position: absolute;
-    height: 60px;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 10px 0;
-    flex-shrink: 0;
-  }
-  
-.navbar-body ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around; /* Distribui os elementos com espaço igual entre eles */
-  }
-  
-.navbar-body li {
-    margin: 0 10px;
-    list-style: none;
-    
-  }
-  
-.navbar-body a {
-    margin: 0;
-    padding: 0;
-    color: white;
-  }
-  
-.acessar-conta {
-    display: flex;
-    width: 283px;
-    height: 44px;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #FFF;
-    text-align: center;
-    font-family: sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 1px;
-    
-  }
-  .cadastro button{
-    border-radius: 15px;
-    display: flex;
-    width: 228px;
-    height: 44px;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;
-    text-align: center;
-    flex-shrink: 0;
-    border: 2px solid #FFF;
-    background-color: #3F434A;
-    color: white;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 1px;
-    font-family: sans-serif;
-    font-size: 20px;  
-    margin-top: 5px;
+  background-color: #3f434a;
+  position: absolute;
+  height: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 10px 0;
+  flex-shrink: 0;
 }
 
-  
-.pesquisa input {
-    width: 200px; /* Tamanho da barra de pesquisa */
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: rgb(7, 7, 7);
-    font-size: 16px;
-    font-family: sans-serif;
-    margin-top: 10px;
-    font-weight: 700;
-  }
+.navbar-body ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around; /* Distribui os elementos com espaço igual entre eles */
+}
 
-.Logo button{
-    height: 55px;
-    border-radius: 10px;
-    border: 2px solid #3F434A;
-    background-color: #3F434A;
-    font-family: sans-serif;
-    letter-spacing: 1px;
-    font-weight: 700;
-    color: #FFF;
-    font-size: 24pt;
-  }
+.navbar-body li {
+  margin: 0 10px;
+  list-style: none;
+}
+
+.navbar-body a {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.acessar-conta {
+  display: flex;
+  width: 283px;
+  height: 44px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+}
+.cadastro button {
+  border-radius: 15px;
+  display: flex;
+  width: 228px;
+  height: 44px;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+  border: 2px solid #fff;
+  background-color: #3f434a;
+  color: white;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  font-family: sans-serif;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.pesquisa input {
+  width: 200px; /* Tamanho da barra de pesquisa */
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: rgb(7, 7, 7);
+  font-size: 16px;
+  font-family: sans-serif;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.Logo button {
+  height: 55px;
+  border-radius: 10px;
+  border: 2px solid #3f434a;
+  background-color: #3f434a;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #fff;
+  font-size: 24pt;
+}
 
 .texto-pesquisar {
-    font-weight: bold;
-    font-size: 50pt;
-    color: rgb(3, 3, 3);
-  }
+  font-weight: bold;
+  font-size: 50pt;
+  color: rgb(3, 3, 3);
+}
