@@ -32,12 +32,14 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: 2px;
-  margin-bottom: 10px;
+  margin-top: 12px;
+  margin-bottom: 63px;
 }
 .container form {
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-family: Newsreader;
 }
 .container form .inputContainer {
   width: 80%;
@@ -49,18 +51,17 @@
 }
 .container form .inputContainer label {
   display: flex;
-  width: 211px;
+  width: 400px;
   height: 25px;
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
-  font-family: Newsreader;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 1.25px;
-  margin-top: 3px;
+  margin-bottom: 5px;
 }
 .container form button {
   display: flex;
@@ -72,48 +73,43 @@
   border-radius: 20px;
   color: white;
   font-size: 25px;
-  font-family: Newsreader;
-  font-weight: 400;
   letter-spacing: 1.25;
-  margin-top: 60px;
-}
-.container form .footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 29px;
-  margin-bottom: 5px;
-  gap: 10px;
+  margin-top: 94px;
+  margin-bottom: 17px;
 }
 .container form button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
-.container form .footer a {
-  color: #2300fc;
-  font-family: Newsreader;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1px;
-}
-.container form .footer p {
-  color: #000;
-
-  text-align: center;
-  font-family: Newsreader;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1px;
-}
-.wrap-cadastro {
-  width: 467px;
-  height: 583px;
+.wrap {
+  width: 802px;
+  height: 613px;
   background-color: #ebebeb;
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid black;
+}
+.container .wrap .footer {
+  width: 802px;
+  height: 56px;
+  display: flex;
+  border-radius: 0px 0px 15px 15px;
+  border: 1px solid #000;
+  margin-top: 95px;
+  background: #d9d9d9;
+}
+.container .wrap form a {
+  color: #2300fc;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.25px;
+  text-decoration: none;
+}
+.container .wrap form span {
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-top: 33px;
 }

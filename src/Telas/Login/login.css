@@ -23,7 +23,8 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: 2px;
-  margin-bottom: 55px;
+  margin-top: 12px;
+  margin-bottom: 63px;
 }
 .container form {
   display: flex;
@@ -88,7 +89,7 @@
   width: 100%;
   height: 34px;
   border-radius: 40px;
-  padding-left: 12px;
+  padding-left: 20px;
 }
 .container form .footer {
   width: 466px;

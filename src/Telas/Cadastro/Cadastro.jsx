@@ -4,7 +4,7 @@ import "./cadastro.css";
 function Cadastro() {
   return (
     <div className="container">
-      <div className="wrap-login">
+      <div className="wrap-cadastro">
         <header className="header">
           <span>Criar conta</span>
         </header>
