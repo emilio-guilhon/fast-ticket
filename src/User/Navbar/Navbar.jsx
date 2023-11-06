@@ -1,5 +1,6 @@
 import React from "react";
 import "./navbar.css";
+import {Link} from 'react-router-dom';
 
 function Navbar(){
     return (
@@ -12,10 +13,10 @@ function Navbar(){
           <input type="text" placeholder="..." className="texto-pesquisar" />
            </li>
             <li className="acessar-conta">
-              <a href="/">Acesse sua conta</a>
+              <Link to="/login">Acesse sua conta</Link>
             </li>
             <li className="cadastro">
-              <button>Cadastre-se</button>
+              <button ><Link to="/cadastro">Cadastre-se</Link></button>
             </li>
           </ul>
         </nav>

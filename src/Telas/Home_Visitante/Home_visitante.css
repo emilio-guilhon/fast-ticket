@@ -14,3 +14,29 @@
   width: 800px;
   margin-top: 20px; /* Ajuste a margem superior para posicionar um pouco mais acima */
 }
+.titulo-principal{
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: -10px; /*cria uma aproximação entre o título e a div com o evento*/
+  margin-top: 60px;  /*cria um espaçamento entre o topo o o título do evento principal*/
+  font-size: 25px;
+ 
+}
+
+.Demais-eventos {
+  height: 400px;
+  width: 900px;
+}
+
+.x, .y, .z {
+  background-color: gray;
+  height: 130px;
+  width: 200px;
+  display: inline-block; /* Aplica um display inline-block a cada div individual */
+  margin-right: 99px; /* espaçamento entre as divs*/
+}
+.titulo-demaisEventos{
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px ;
+}

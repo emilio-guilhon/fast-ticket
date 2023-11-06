@@ -1,10 +1,15 @@
 import React from "react";
 import "./login.css";
+import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCadastro";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 function Login() {
   return (
+
     <div className="container">
       <div className="wrap-login">
         <header className="header">
+        <Navbar_LoginCadastro/>
           <span>Login</span>
         </header>
         <form>
@@ -31,11 +36,11 @@ function Login() {
           <button className="Button">Entrar</button>
           <div className="underbutton">
             <p>Esqueceu a senha?</p>
-            <a href="">Clique Aqui!</a>
+            <a href="/">Clique Aqui!</a>
           </div>
           <div className="footer">
             <p>Não possui conta?</p>
-            <a href="">Cadastre-se!</a>
+            <Link to='/cadastro'><a>Cadastre-se</a></Link>
           </div>
         </form>
       </div>
