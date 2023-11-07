@@ -1,8 +1,14 @@
 import React from "react";
 import "./cadastro.css";
 import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCadastro";
+import { useState } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Cadastro() {
+  const [nomeCompleto, SetNomeCompleto] = useState("");
+  const handleChange = (event) => {
+    SetNomeCompleto(event.target.value);
+  };
   return (
     <div className="container">
       <div className="wrap-cadastro">
@@ -16,6 +22,8 @@ function Cadastro() {
             <input
               className="input"
               type="text"
+              onChange={handleChange}
+              value={nomeCompleto}
               name="nomeCompleto"
               id="nomeCompleto"
               placeholder="Seu Nome"
@@ -57,7 +65,9 @@ function Cadastro() {
           <button className="Button">Cadastrar</button>
           <div className="footer">
             <p>Já possui cadastro?</p>
-            <a href="/">Clique Aqui</a>
+            <Link to="/login">
+              <a>Clique Aqui</a>
+            </Link>
           </div>
         </form>
       </div>

@@ -35,7 +35,7 @@ function Login() {
           <button className="Button">Entrar</button>
           <div className="underbutton">
             <p>Esqueceu a senha?</p>
-            <a href="/">Clique Aqui!</a>
+            <a>Clique Aqui!</a>
           </div>
           <div className="footer">
             <p>Não possui conta?</p>
