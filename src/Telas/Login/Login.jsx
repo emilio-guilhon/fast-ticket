@@ -5,11 +5,10 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Login() {
   return (
-
     <div className="container">
       <div className="wrap-login">
         <header className="header">
-        <Navbar_LoginCadastro/>
+          <Navbar_LoginCadastro />
           <span>Login</span>
         </header>
         <form>
@@ -36,11 +35,13 @@ function Login() {
           <button className="Button">Entrar</button>
           <div className="underbutton">
             <p>Esqueceu a senha?</p>
-            <a href="/">Clique Aqui!</a>
+            <a>Clique Aqui!</a>
           </div>
           <div className="footer">
             <p>Não possui conta?</p>
-            <Link to='/cadastro'><a>Cadastre-se</a></Link>
+            <Link to="/cadastro">
+              <a>Cadastre-se</a>
+            </Link>
           </div>
         </form>
       </div>

@@ -1,14 +1,15 @@
 import React from "react";
 import "./cadastro.css";
 import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCadastro";
-
+import { useState } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Cadastro() {
   return (
     <div className="container">
       <div className="wrap-cadastro">
         <header className="header">
-          <Navbar_LoginCadastro/>
+          <Navbar_LoginCadastro />
           <span>Criar conta</span>
         </header>
         <form>
@@ -58,7 +59,9 @@ function Cadastro() {
           <button className="Button">Cadastrar</button>
           <div className="footer">
             <p>Já possui cadastro?</p>
-            <a href="/">Clique Aqui</a>
+            <Link to="/login">
+              <a>Clique Aqui</a>
+            </Link>
           </div>
         </form>
       </div>
