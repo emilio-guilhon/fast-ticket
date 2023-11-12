@@ -1,0 +1,38 @@
+.navbar-body {
+    background-color: #3F434A;
+    position: absolute;
+    height: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 10px 0;
+    flex-shrink: 0;
+  }
+
+.Perfil {
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s; /* Adiciona transição suave de cores */
+    
+  }
+  
+  .perfilInfo {
+    color: #fff; 
+    background: none; /* Remove o fundo padrão do botão */
+    border: none; 
+    font-size: 14pt;
+  }
+  .Perfil:hover {
+    background-color: #6b6e72; /* Altera a cor de fundo no hover */
+    border-radius: 10px;
+    
+  }
+  
+  .Perfil:hover img {
+    opacity: 0.7; /* Reduz a opacidade das imagens no hover */
+  }
+  
+  .Perfil:hover .perfilInfo {
+    color: #fafafa; /* Altera a cor do texto no hover */
+  }
