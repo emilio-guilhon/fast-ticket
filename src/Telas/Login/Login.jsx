@@ -2,8 +2,29 @@ import React from "react";
 import "./login.css";
 import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCadastro";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import axios from "axios";
 
 function Login() {
+
+  const login =async (username , password)=>{
+    try {
+      const response = await axios.get('http://localhost:5000/user/activate/{token}',{
+        username:username,
+        password:password
+      });
+      console.log(response);
+      if(response.status == 200){
+        console.log('Sucesso!');
+      }
+      else{
+        console.log('Deu errado!');
+      }
+    } catch (error) {
+       console.log("Erro ao realizar login",error);
+    }
+  }
+
+  
   return (
     <div className="container">
       <div className="wrap-login">
@@ -11,7 +32,7 @@ function Login() {
           <Navbar_LoginCadastro />
           <span>Login</span>
         </header>
-        <form>
+        <form >
           <div className="inputContainer">
             <label htmlFor="email">E-mail:</label>
             <input
@@ -32,7 +53,7 @@ function Login() {
               placeholder="**********"
             />
           </div>
-          <button className="Button">Entrar</button>
+          <button className="Button" onSubmit={login} >Entrar</button>
           <div className="underbutton">
             <p>Esqueceu a senha?</p>
             <a>Clique Aqui!</a>
