@@ -1,30 +1,42 @@
-import React from "react";
+import React, { useState } from 'react';
 import "./login.css";
 import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCadastro";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link , useHistory } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
+  const history = useHistory();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const login =async (username , password)=>{
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.get('http://localhost:5000/user/activate/{token}',{
-        username:username,
-        password:password
+      const response = await axios.post('http://localhost:5000/login', {
+        email: email,
+        password: password,
       });
-      console.log(response);
-      if(response.status == 200){
-        console.log('Sucesso!');
-      }
-      else{
-        console.log('Deu errado!');
+
+      if (response.status === 200) {
+        // Login bem-sucedido, armazene o token
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+         console.log(token);
+        // Redirecione para a página principal
+        console.log('Sucesso');
+        history.push('/homecliente');
+
       }
     } catch (error) {
-       console.log("Erro ao realizar login",error);
+      console.error('Erro ao realizar o login:', error);
+      alert('Erro ao realizar login');
+      console.log(email , password);
+      
+      
+      
     }
-  }
+  };
 
-  
   return (
     <div className="container">
       <div className="wrap-login">
@@ -32,13 +44,14 @@ function Login() {
           <Navbar_LoginCadastro />
           <span>Login</span>
         </header>
-        <form >
+        <form onSubmit={handleLogin}>
           <div className="inputContainer">
             <label htmlFor="email">E-mail:</label>
             <input
               className="input"
               type="text"
-              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               placeholder="exemplo@email.com"
             />
@@ -48,12 +61,13 @@ function Login() {
             <input
               className="input"
               type="password"
-              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               id="password"
               placeholder="**********"
             />
           </div>
-          <button className="Button" onSubmit={login} >Entrar</button>
+          <button className="Button" type="submit">Entrar</button>
           <div className="underbutton">
             <p>Esqueceu a senha?</p>
             <a>Clique Aqui!</a>
