@@ -36,3 +36,48 @@
   .Perfil:hover .perfilInfo {
     color: #fafafa; /* Altera a cor do texto no hover */
   }
+
+  .texto-pesquisar {
+    width: 350px !important; /* Defina a largura desejada */
+  }
+  .perfil-container {
+    position: relative;
+  }
+  
+  .subitems {
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    top: 43px;
+    left: -14%;
+    width: 450px;
+    height: 110px;
+    background-color: #D9D9D9; /* Ajuste a cor de fundo conforme necessário */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Adicione sombra conforme necessário */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    border-radius: 0 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: black;
+  }
+  
+  .subitems li {
+    padding: 8px; /* Adicione espaçamento interno entre os subitens */
+    border-top: 1px solid #797373; /* Adicione uma borda superior entre os subitens */
+    list-style: none;
+  }
+  .subitems .logout-item {
+    list-style: none; /* Remover a marcação de lista */
+  }
+  
+  .subitems .logout-item a {
+    text-decoration: none; /* Remover a formatação de link */
+    color: black; /* Ajuste a cor do texto conforme necessário */
+  }
+  
+  
+  .perfil-container.open .subitems {
+    max-height: 120px; /* Ajuste a altura máxima conforme necessário */
+  }

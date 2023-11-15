@@ -43,7 +43,8 @@ const handleSubmit = (e) => {
 
   axios.post("http://localhost:5000/user", jsonData, config)
     .then(response => {
-      return console.log(response.data);
+       console.log(response.data);
+       alert("Cadastro realizado com sucesso!");
     })
     .catch(error => {
       console.error('Erro no cadastro:', error);

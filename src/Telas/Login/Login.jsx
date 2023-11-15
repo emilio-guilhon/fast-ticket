@@ -20,17 +20,20 @@ function Login() {
       if (response.status === 200) {
         // Login bem-sucedido, armazene o token
         const token = response.data.token;
-        localStorage.setItem('token', token);
-         console.log(token);
+        localStorage.setItem('authToken', token);
+        console.log(token);
         // Redirecione para a página principal
         console.log('Sucesso');
-        history.push('/homecliente');
-
+        
+       history.push('/homecliente');
+        
+        
       }
     } catch (error) {
       console.error('Erro ao realizar o login:', error);
       alert('Erro ao realizar login');
       console.log(email , password);
+      
       
       
       
@@ -83,5 +86,4 @@ function Login() {
     </div>
   );
 }
-
-export default Login;
+export default Login ;
