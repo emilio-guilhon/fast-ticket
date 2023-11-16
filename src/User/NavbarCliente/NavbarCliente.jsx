@@ -4,12 +4,13 @@ import iconImg from '../Pictures/image 22.png';
 import "./NavbarCliente.css";
 import axios from 'axios';
 import { useParams ,Link } from 'react-router-dom';
+import { idUser } from '../../Telas/Login/Login';
 
 axios.interceptors.request.use(
   (config) => {
     const bearer =
       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MzA0ODQ4ODY5NDl9.o0d1AIzyF9GSRQG6abcAijkaWx_jaRq0RD4Ka3tjQIQ';
-    console.log(bearer);
+    //console.log(bearer);
     if (bearer) {
       config.headers.Authorization = `Bearer ${bearer}`;
     }
@@ -29,8 +30,9 @@ function NavbarCliente() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/user/5`);
+        const response = await axios.get(`http://localhost:5000/user/${idUser}`);
         setUser(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
       }
@@ -75,7 +77,7 @@ function NavbarCliente() {
                   <li className="logout-item">
                   <Link to="/login">Sair</Link>
                   </li>
-                  {/* Adicione mais subitens conforme necessário */}
+                  
                 </ul>
               )}
             </div>

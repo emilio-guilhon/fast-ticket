@@ -4,6 +4,7 @@ import Home_Visitante from './Telas/Home_Visitante/Home_Visitante';
 import Login from './Telas/Login/Login';
 import Cadastro from './Telas/Cadastro/Cadastro';
 import HomeCliente from './Telas/HomeCliente/HomeCliente';
+import HomeAdmin from './Telas_Admin/HomeAdmin';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <header className="App-header">
         <Router>
           <Switch>
+            <Route path="/homeadmin" component={HomeAdmin}/>
             <Route path ="/homecliente" component ={HomeCliente}/>
             <Route path="/login" component={Login} />
             <Route path="/cadastro" component={Cadastro} />

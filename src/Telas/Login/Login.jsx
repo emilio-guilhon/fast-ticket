@@ -4,10 +4,14 @@ import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCa
 import { Link , useHistory } from "react-router-dom";
 import axios from "axios";
 
+let idUser = 0 // variável auxliar que ajudará na referência do user
+
 function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState(null);
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,24 +25,34 @@ function Login() {
         // Login bem-sucedido, armazene o token
         const token = response.data.token;
         localStorage.setItem('authToken', token);
-        console.log(token);
+        //console.log(token);
+        const response2 = await axios.get(`http://localhost:5000/user`);
+        setUser(response2.data);
+        const param = response2.data.items.length;
+        
         // Redirecione para a página principal
         console.log('Sucesso');
+        const emails = response2.data.items.map(user => user.email);
+
         
-       history.push('/homecliente');
-        
-        
+       
+       let idTest = 0;
+        for (let i = 0; i < param; i++) {
+          if (email === emails[i]) {
+            idTest = i + 1;
+            idUser = idTest;
+            history.push('/homecliente');
+          }
+        }        
+       } 
       }
-    } catch (error) {
+     catch (error) {
       console.error('Erro ao realizar o login:', error);
       alert('Erro ao realizar login');
-      console.log(email , password);
-      
-      
-      
-      
+      console.log(email , password);  
     }
   };
+  const getIdUser = () => idUser;
 
   return (
     <div className="container">
@@ -85,5 +99,8 @@ function Login() {
       </div>
     </div>
   );
+  
 }
-export default Login ;
+
+export { idUser }; //exporta a variável para ser usada em outro arquivo
+export default Login;

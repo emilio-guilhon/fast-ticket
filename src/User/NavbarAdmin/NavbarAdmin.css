@@ -9,7 +9,7 @@
     padding: 10px 0;
     flex-shrink: 0;
   }
-
+  
 .Perfil {
     display: flex;
     align-items: center;
@@ -75,9 +75,4 @@
   .subitems .logout-item a {
     text-decoration: none; /* Remover a formatação de link */
     color: black; /* Ajuste a cor do texto conforme necessário */
-  }
-  
-  
-  .perfil-container.open .subitems {
-    max-height: 120px; /* Ajuste a altura máxima conforme necessário */
   }
