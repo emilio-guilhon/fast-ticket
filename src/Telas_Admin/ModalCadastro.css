@@ -1,0 +1,19 @@
+.modal-contend{
+  margin-top: 70px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 600px;
+  height: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  border: 1px solid black;
+  z-index: 1000; /* Defina um valor alto para garantir que a modal sobreponha outros elementos */
+  }
+  
+  .modal-fundo {
+    background-color: blur();
+  }

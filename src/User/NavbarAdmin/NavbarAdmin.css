@@ -2,6 +2,7 @@
     background-color: #3F434A;
     position: absolute;
     height: 60px;
+    width: 100%;
     top: 0;
     left: 0;
     right: 0;
@@ -10,11 +11,13 @@
     flex-shrink: 0;
   }
   
+ 
+
 .Perfil {
     display: flex;
     align-items: center;
     transition: background-color 0.3s, color 0.3s; /* Adiciona transição suave de cores */
-    
+    float:right;
   }
   
   .perfilInfo {
@@ -73,6 +76,6 @@
   }
   
   .subitems .logout-item a {
-    text-decoration: none; /* Remover a formatação de link */
-    color: black; /* Ajuste a cor do texto conforme necessário */
+    text-decoration: none; 
+    color: black; 
   }

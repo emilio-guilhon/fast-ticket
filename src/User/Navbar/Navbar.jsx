@@ -15,7 +15,7 @@ function Navbar(){
             <li className="acessar-conta">
               <Link to="/login">Acesse sua conta</Link>
             </li>
-            <li className="cadastro">
+            <li className="cadastroButtton">
               <button ><Link to="/cadastro">Cadastre-se</Link></button>
             </li>
           </ul>

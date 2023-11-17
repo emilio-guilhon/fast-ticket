@@ -18,6 +18,21 @@
     margin-left: 950px;
     right: 220px; /* Ajuste a distância da direita conforme necessário */
     left: 0;
+    width: 228px;
+    height: 54px;
+    border: 2px solid #fff;
+    color: white;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    font-family: sans-serif;
+    font-size: 20px;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    border-radius: 15px;
+    text-decoration: none;
 }
 .cadastro button:hover{
     background-color: #5d90db;
@@ -43,3 +58,5 @@
     margin-left: 110px;
     margin-bottom: -40px;
 }
+
+
