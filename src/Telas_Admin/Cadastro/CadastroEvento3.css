@@ -2,11 +2,10 @@ body {
   background-color: #fff;
   min-height: 700px;
 }
-.tituloevento {
+.tipoingresso {
   width: 525px;
   height: 25px;
 }
-
 .contend {
   width: 85%;
   height: 900px;
@@ -19,7 +18,6 @@ body {
   box-sizing: border-box;
   border-radius: 20px;
 }
-
 .contend h1 {
   text-align: center;
   margin-top: 0;
@@ -28,14 +26,12 @@ body {
 .input-group {
   margin-bottom: 10px;
 }
-
 .input-group label {
   display: inline-block;
   width: 150px;
   margin-right: 10px;
 }
-
-.infos {
+.infoingresso {
   background-color: white;
   border: 2px solid black;
   padding: 20px;
@@ -45,7 +41,6 @@ body {
   height: 700px;
   justify-content: center;
 }
-
 .botoes {
   float: right;
   width: 350px;
@@ -55,7 +50,6 @@ body {
   border: 1px solid black;
   text-decoration: none;
 }
-
 .cancelar {
   height: 50px;
   margin-top: 10px;
@@ -110,8 +104,4 @@ body {
   letter-spacing: 1px;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 20px;
-}
-
-.description {
-  overflow-y: scroll;
 }
