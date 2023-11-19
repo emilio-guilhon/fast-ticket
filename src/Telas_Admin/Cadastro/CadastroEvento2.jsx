@@ -1,6 +1,7 @@
 import React from "react";
 import NavbarAdminEdits from "../../User/NavbarAdminEdits/NavbarAdminEdits";
 import "./CadastroEvento2.css";
+import backimg from '../../User/Pictures/png-transparent-arrow-back-left-arrow-outline-icon-removebg-preview 3.png'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function CadastroEvento2() {
@@ -8,18 +9,20 @@ function CadastroEvento2() {
     <div className="body">
       <NavbarAdminEdits />
       <div className="contend">
+        <Link to='/cadastroeventos'><img src={backimg} className="voltarIcon"></img></Link>
         <h1>Cadastrar Evento</h1>
         <div className="forms">
-          <p>Endereço:</p>
           <div className="infoaddress">
+            <div className="endereco-titulo">
+               <p>Endereço</p>
+            </div>
             <div className="input-group">
               <label>CEP*:</label>
               <input type="number" className="cepevento" />
             </div>
             <div className="input-group">
               <label>Endereço*:</label>
-              <input type="text" className="endereco" />
-              <textarea rows="3"></textarea>
+              <textarea rows="2" cols="70" className="endereço"></textarea>
             </div>
             <div className="input-group">
               <label>Número*:</label>

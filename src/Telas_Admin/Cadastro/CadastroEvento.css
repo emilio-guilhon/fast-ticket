@@ -1,7 +1,4 @@
-body {
-  background-color: #fff;
-  min-height: 700px;
-}
+
 .tituloevento {
   width: 525px;
   height: 25px;
@@ -9,15 +6,14 @@ body {
 
 .contend {
   width: 85%;
-  height: 900px;
-  min-height: 500px;
-  max-width: 1200px;
+  height: 1300px;
+  min-height: 900px;
+  max-width: 1500px;
   margin: 50px auto;
   background-color: white;
   border: 2px solid black;
   padding: 20px;
   box-sizing: border-box;
-  border-radius: 20px;
 }
 
 .contend h1 {
@@ -44,6 +40,11 @@ body {
   width: 90%;
   height: 700px;
   justify-content: center;
+}
+
+.infogeral {
+  color: black;
+  text-decoration: underline; /* Adiciona sublinhado */
 }
 
 .botoes {

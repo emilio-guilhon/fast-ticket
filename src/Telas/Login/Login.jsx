@@ -10,7 +10,7 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
+  const [ setUser] = useState(null);
   
 
   const handleLogin = async (e) => {
@@ -52,7 +52,7 @@ function Login() {
       console.log(email , password);  
     }
   };
-  const getIdUser = () => idUser;
+ 
 
   return (
     <div className="container">

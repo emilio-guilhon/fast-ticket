@@ -39,7 +39,7 @@
 }
 
 .container_eventos {
-    width: 85%;
+    width: 100%;
     height: 100%;
     min-height: 500px;
     max-width: 1200px;
@@ -51,6 +51,9 @@
     border-radius: 20px;
 }
 
+.container_eventos{
+    width: 100%;
+}
 .Eventos-titulo{
     font-size: 20pt;
     font-weight: bolder;
@@ -59,4 +62,20 @@
     margin-bottom: -40px;
 }
 
+.tabela {
+    border-collapse: collapse; /* Certifica-se de que as bordas das células se fundam */
+    width: 100%; /* Garante que a tabela ocupe 100% da largura do contêiner pai */
+    padding-left: 20px;
+    padding-right: 160px;
+    
+  }
 
+.tabela th{
+    border-bottom: 1px solid black; 
+    padding-bottom: 10px;
+}
+
+.tabela td {
+    border-bottom: 1px solid black; /* Adiciona uma linha preta na parte inferior de cada célula */
+    padding: 10px;
+  }

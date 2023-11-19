@@ -1,6 +1,6 @@
 body {
   background-color: #fff;
-  min-height: 700px;
+  min-height: 500px;
 }
 .cepevento {
   width: 525px;
@@ -8,9 +8,8 @@ body {
 }
 .contend {
   width: 85%;
-  height: 900px;
-  min-height: 500px;
-  max-width: 1200px;
+  height: 700px;
+  max-width: 1000px;
   margin: 50px auto;
   background-color: white;
   border: 2px solid black;
@@ -38,8 +37,13 @@ body {
   box-sizing: border-box;
   border-radius: 20px;
   width: 90%;
-  height: 700px;
+  height: 350px;
   justify-content: center;
+  margin-top: 40px;
+  text-align: center;
+  margin-left: 40px;
+  
+
 }
 .botoes {
   float: right;
@@ -49,6 +53,21 @@ body {
   margin-right: 5px;
   border: 1px solid black;
   text-decoration: none;
+}
+
+.numeroendereco{
+  width:530px ;
+}
+
+.input-group label{
+    font-weight: bold;
+}
+
+.endereco-titulo p{
+  display: flex;
+  font-size: 16pt;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
 }
 .cancelar {
   height: 50px;

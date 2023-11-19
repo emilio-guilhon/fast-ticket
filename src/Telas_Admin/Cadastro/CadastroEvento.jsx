@@ -9,8 +9,8 @@ function CadastroEvento() {
       <div className="contend">
         <h1>Cadastrar Evento</h1>
         <div className="forms">
-          <p>Informações gerais:</p>
           <div className="infos">
+          <p className="infogeral">Informações Gerais:</p>
             <div className="input-group">
               <label>Título do Evento*:</label>
               <input type="text" className="tituloevento" />
@@ -33,7 +33,16 @@ function CadastroEvento() {
 
             <div className="input-group">
               <label>Tipo de Evento*:</label>
-              <input type="checkbox" />
+              <select
+                className="tipoingresso"
+              >
+                <option value="">Selecione o tipo</option>
+                <option value="comedia">Comédia</option>
+                <option value="teatro">Teatro</option>
+                <option value="cinema">Cinema</option>
+                <option value="festival">Festival </option>
+                <option value="musica">Música</option>
+              </select>
             </div>
           </div>
           <div className="botoes">
