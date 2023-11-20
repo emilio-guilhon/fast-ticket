@@ -1,10 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import NavbarAdminEdits from "../../User/NavbarAdminEdits/NavbarAdminEdits";
 import "./CadastroEvento2.css";
 import backimg from '../../User/Pictures/png-transparent-arrow-back-left-arrow-outline-icon-removebg-preview 3.png'
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import {Link ,useLocation,useHistory } from "react-router-dom";
 
 function CadastroEvento2() {
+  const [cep,setCep] = useState('');
+  const [endereco,setEndereco] = useState('');
+  const [numEndereco,setnumEndereco]=useState('');
+  const history = useHistory();
+  const location = useLocation();
+  const eventoData = location.state?.eventoData || {}; // Acessando dados passados por props
+  const { tituloEvento, descricao, data, hora, tipoEvento, bannerImage } = eventoData;
+  
+  const handleNext = ()=>{
+    const eventoData2= { //const que representa os dados das variáveis de cadastroEvento e cadastroEvento2
+      tituloEvento,
+      descricao,
+      data,
+      hora,
+      tipoEvento,
+      bannerImage,
+      cep,
+      endereco,
+      numEndereco,
+    };
+    // Navegar para a próxima tela e passar os dados via estado
+    /* console.log('titulo: ', tituloEvento);
+    console.log('descricao: ', descricao);
+    console.log('data: ', data);
+    console.log('hora: ', hora);
+    console.log('tipo de evento: ', tipoEvento);
+    console.log('banner: ', bannerImage);
+    console.log('cep: ', cep);
+    console.log('endereço: ', endereco);
+    console.log('Número: ', numEndereco); */
+    history.push('/cadastroeventos3', { eventoData2})
+  }
+  
   return (
     <div className="body">
       <NavbarAdminEdits />
@@ -18,15 +51,33 @@ function CadastroEvento2() {
             </div>
             <div className="input-group">
               <label>CEP*:</label>
-              <input type="number" className="cepevento" />
+              <input
+               type="number"
+               className="cepevento"
+               value={cep}
+               onChange={(e)=>setCep(e.target.value)}
+                />
             </div>
+            
             <div className="input-group">
               <label>Endereço*:</label>
-              <textarea rows="2" cols="70" className="endereço"></textarea>
+              <textarea 
+              rows="2" 
+              cols="70" 
+              className="endereço"
+              value={endereco}
+              onChange={(e)=>setEndereco(e.target.value)}
+              ></textarea>
             </div>
+
             <div className="input-group">
               <label>Número*:</label>
-              <input type="number" className="numeroendereco" />
+              <input
+               type="number"
+               className="numeroendereco" 
+               value={numEndereco}
+               onChange={(e)=>setnumEndereco(e.target.value)}
+               />
             </div>
           </div>
           <div className="botoes">
@@ -34,7 +85,7 @@ function CadastroEvento2() {
               <button className="cancelar">Cancelar</button>
             </Link>
             <Link to="/cadastroeventos3">
-              <button className="proximo">Próximo</button>
+              <button className="proximo" onClick={handleNext}>Próximo</button>
             </Link>
           </div>
         </div>

@@ -107,3 +107,27 @@ body {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 20px;
 }
+
+
+.addIngresso{
+  float: right;
+}
+
+.addIngresso button{
+  height: 50px;
+  width: 250px;
+  border-radius: 20px;
+  background-color: #3888ff;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1px;
+  font-size: 15px;
+  border: none;
+  margin-top: 150px;
+}
+
+.addIngresso button:hover{
+  background-color:#7d9fd3;
+}

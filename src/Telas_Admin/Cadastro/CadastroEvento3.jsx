@@ -12,7 +12,7 @@ function CadastroEvento3() {
     <div className="body">
       <NavbarAdminEdits />
       <div className="contend">
-      <Link to='/cadastroeventos2'><img src={backimg} className="voltarIcon"></img></Link>
+      <Link to='/cadastroeventos2'><img src={backimg} alt ='backimg' className="voltarIcon"></img></Link>
         <h1>Cadastrar Evento</h1>
         <div className="forms">
           <div className="infoingresso">
@@ -33,9 +33,12 @@ function CadastroEvento3() {
             <div className="input-group">
               <label>Quantidade*:</label>
               <input type="number" />
-                
-             
             </div>
+
+             <div className="addIngresso">
+                 <button>Adicionar ingresso +</button>
+             </div>
+
           </div>
           <div className="botoes">
             <Link to="/homeadmin">

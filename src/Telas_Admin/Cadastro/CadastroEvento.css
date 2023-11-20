@@ -116,3 +116,25 @@
 .description {
   overflow-y: scroll;
 }
+
+.fileInputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fileInputContainer img {
+  margin-left: 150px;  
+  margin-top : -30px;
+  height:90px;
+  width: 120px;
+  
+}
+.fileInputContainer input{
+  margin-left: 150px;
+  margin-top: -30px;
+}
+.fileInputContainer input{
+  background-image: url('../../User/Pictures/receive_96629\ 1.png');
+  display: none;
+}
