@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import NavbarAdminEdits from "../../User/NavbarAdminEdits/NavbarAdminEdits";
-import "./CadastroEvento.css";
+import "./EditarEvento.css";
 import bannerimg from "../../User/Pictures/receive_96629 1.png";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
-function CadastroEvento() {
+function EditarEvento() {
   const [bannerImage, setBannerImage] = useState(bannerimg);
   const [tituloEvento, setTituloEvento] = useState("");
   const [descricao, setDescricao] = useState("");
@@ -46,7 +46,7 @@ function CadastroEvento() {
     };
 
     // Navegar para a próxima tela e passar os dados via estado
-    history.push("/cadastroeventos2", { eventoData });
+    history.push("/EditarEvento2", { eventoData });
   };
 
   return (
@@ -132,4 +132,4 @@ function CadastroEvento() {
   );
 }
 
-export default CadastroEvento;
+export default EditarEvento;
