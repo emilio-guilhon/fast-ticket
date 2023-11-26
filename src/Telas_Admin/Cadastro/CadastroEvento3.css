@@ -131,3 +131,47 @@ body {
 .addIngresso button:hover{
   background-color:#7d9fd3;
 }
+
+
+
+/* Adicione esta classe para controlar o espaçamento entre as colunas */
+
+.tabela-container{
+  max-width: 1000px;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin-left: 30px;
+  
+}
+.th-tipo-ingresso {
+  width: 450px; /* Altere o valor conforme necessário */
+  display: flex;
+  float: left;
+}
+
+.th-quantidade {
+  width: 300px;
+  
+}
+
+.th-selecionar {
+  width: 150px;
+}
+th, td {
+  padding: 10px; /* Adicione um preenchimento para melhorar a aparência */
+}
+
+button {
+  width: 100%; /* O botão ocupará 100% da largura da célula */
+}
+
+.th-buttton{
+  background-image: url('../../User/Pictures/trash2-fill.png');
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+  margin-left: 60px;
+  cursor: pointer;
+  border: none;
+}

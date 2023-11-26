@@ -47,7 +47,7 @@ function EditarEvento2() {
         <Link to="/EditarEvento">
           <img src={backimg} className="voltarIcon"></img>
         </Link>
-        <h1>Cadastrar Evento</h1>
+        <h1>Editar Evento</h1>
         <div className="forms">
           <div className="infoaddress">
             <div className="endereco-titulo">

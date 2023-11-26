@@ -8,6 +8,9 @@ import HomeAdmin from "./Telas_Admin/HomeAdmin";
 import CadastroEvento from "./Telas_Admin/Cadastro/CadastroEvento";
 import CadastroEvento2 from "./Telas_Admin/Cadastro/CadastroEvento2";
 import CadastroEvento3 from "./Telas_Admin/Cadastro/CadastroEvento3";
+import EditarEvento from './Telas_Admin/Editar/EditarEvento';
+import EditarEvento2 from './Telas_Admin/Editar/EditarEvento2';
+import EditarEvento3 from './Telas_Admin/Editar/EditarEvento3';
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
       <header className="App-header">
         <Router>
           <Switch>
+            <Route path ="/editarevento3" component ={EditarEvento3}/>
+            <Route path ="/editareventos2" component ={EditarEvento2}/>
+            <Route path ="/editareventos" component ={EditarEvento}/>
             <Route path="/cadastroeventos3" component={CadastroEvento3} />
             <Route path="/cadastroeventos2" component={CadastroEvento2} />
             <Route path="/cadastroeventos" component={CadastroEvento} />

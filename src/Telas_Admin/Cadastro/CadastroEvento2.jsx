@@ -6,13 +6,15 @@ import {Link ,useLocation,useHistory } from "react-router-dom";
 
 function CadastroEvento2() {
   const [cep,setCep] = useState('');
-  const [endereco,setEndereco] = useState('');
-  const [numEndereco,setnumEndereco]=useState('');
+  const [street,setEndereco] = useState('');
+  const [number,setnumEndereco]=useState('');
   const history = useHistory();
   const location = useLocation();
   const eventoData = location.state?.eventoData || {}; // Acessando dados passados por props
-  const { tituloEvento, descricao, data, hora, tipoEvento, bannerImage } = eventoData;
+  const { tituloEvento, descricao, data, hora, tipoEvento , prioridade } = eventoData;
   
+
+
   const handleNext = ()=>{
     const eventoData2= { //const que representa os dados das variáveis de cadastroEvento e cadastroEvento2
       tituloEvento,
@@ -20,22 +22,17 @@ function CadastroEvento2() {
       data,
       hora,
       tipoEvento,
-      bannerImage,
+      prioridade,
       cep,
-      endereco,
-      numEndereco,
+      street,
+      number,
     };
+    
     // Navegar para a próxima tela e passar os dados via estado
-    /* console.log('titulo: ', tituloEvento);
-    console.log('descricao: ', descricao);
-    console.log('data: ', data);
-    console.log('hora: ', hora);
-    console.log('tipo de evento: ', tipoEvento);
-    console.log('banner: ', bannerImage);
-    console.log('cep: ', cep);
-    console.log('endereço: ', endereco);
-    console.log('Número: ', numEndereco); */
-    history.push('/cadastroeventos3', { eventoData2})
+     history.push('/cadastroeventos3');
+     // Armazenar temporariamente no localStorage
+     localStorage.setItem('eventoData2', JSON.stringify(eventoData2));
+     console.log(eventoData2);
   }
   
   return (
@@ -64,8 +61,8 @@ function CadastroEvento2() {
               <textarea 
               rows="2" 
               cols="70" 
-              className="endereço"
-              value={endereco}
+              className="endereco"
+              value={street}
               onChange={(e)=>setEndereco(e.target.value)}
               ></textarea>
             </div>
@@ -73,9 +70,9 @@ function CadastroEvento2() {
             <div className="input-group">
               <label>Número*:</label>
               <input
-               type="number"
+               type="text"
                className="numeroendereco" 
-               value={numEndereco}
+               value={number}
                onChange={(e)=>setnumEndereco(e.target.value)}
                />
             </div>

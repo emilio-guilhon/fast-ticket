@@ -25,7 +25,7 @@ function Login() {
         // Login bem-sucedido, armazene o token
         const token = response.data.token;
         localStorage.setItem('authToken', token);
-        //console.log(token);
+        
         const response2 = await axios.get(`http://localhost:5000/user`);
         setUser(response2.data);
         const param = response2.data.items.length;
@@ -33,9 +33,6 @@ function Login() {
         // Redirecione para a página principal
         console.log('Sucesso');
         const emails = response2.data.items.map(user => user.email);
-
-        
-       
        let idTest = 0;
         for (let i = 0; i < param; i++) {
           if (email === emails[i]) {

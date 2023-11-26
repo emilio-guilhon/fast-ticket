@@ -79,3 +79,37 @@
     border-bottom: 1px solid black; /* Adiciona uma linha preta na parte inferior de cada célula */
     padding: 10px;
   }
+
+  .acoesBotoes{
+    height: 30px;
+    width: 30px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .modalInfos button{
+    height: 40px;
+    width: 110px;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin-right: 10px;
+    margin-top: 40px;
+    
+  }
+  .cancelamentoConfirma{
+    background-color:rgb(247, 39, 39);
+  }
+  .cancelamentoConfirma:hover{
+    background-color:rgb(248, 79, 79) ;
+  }
+  .cancelamentoNega:hover{
+      background-color: #dbd8d8;
+  }
+  .acoesBotoes button{
+    width: 10px;
+    height: 10px;
+  }
+  .modalInfos p{
+    text-align: center;
+    margin-top: 30px;
+  }

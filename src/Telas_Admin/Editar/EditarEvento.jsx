@@ -53,7 +53,7 @@ function EditarEvento() {
     <div className="body">
       <NavbarAdminEdits />
       <div className="contend">
-        <h1>Cadastrar Evento</h1>
+        <h1>Editar Evento</h1>
         <div className="forms">
           <div className="infos">
             <p className="infogeral">Informações Gerais:</p>
@@ -122,9 +122,11 @@ function EditarEvento() {
             <Link to="/homeadmin">
               <button className="cancelar">Cancelar</button>
             </Link>
+            <Link to='/editareventos2'>
             <button className="proximo" onClick={handleNext}>
               Próximo
             </button>
+            </Link>
           </div>
         </div>
       </div>

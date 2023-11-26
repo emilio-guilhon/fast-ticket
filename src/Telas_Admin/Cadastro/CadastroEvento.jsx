@@ -6,15 +6,15 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
 function CadastroEvento() {
-  const [bannerImage, setBannerImage] = useState(bannerimg);
   const [tituloEvento, setTituloEvento] = useState("");
   const [descricao, setDescricao] = useState("");
   const [data, setData] = useState("");
   const [hora, setHora] = useState("");
   const [tipoEvento, setTipoEvento] = useState("");
+  const [prioridade,setPrioridade] = useState(false);
   const history = useHistory();
 
-  const handleFileChange = (event) => {
+ /* const handleFileChange = (event) => {
     const file = event.target.files[0]; // pega o arquivo na primeira posição
 
     if (file) {
@@ -24,7 +24,8 @@ function CadastroEvento() {
       };
       reader.readAsDataURL(file);
     }
-  };
+  }; */
+
 
   /*const handleUpload = () => {
     if (selectedFile) {
@@ -33,6 +34,9 @@ function CadastroEvento() {
       console.log('nenhum arquivo selecionado');
     }
   } */
+  const handlePrioridadeChange = () => {
+    setPrioridade((prevState) => !prevState);
+  };
 
   const handleNext = () => {
     // função que exportará as variáveis para o próx arquivo
@@ -42,12 +46,31 @@ function CadastroEvento() {
       data,
       hora,
       tipoEvento,
-      bannerImage,
+      prioridade,
     };
-
+     
     // Navegar para a próxima tela e passar os dados via estado
-    history.push("/cadastroeventos2", { eventoData });
+     history.push("/cadastroeventos2", { eventoData });
+    
   };
+
+  const handleDataChange = (e) => {
+    let inputValue = e.target.value;
+
+    // Adiciona barras automaticamente após o dia e o mês
+    if (inputValue.length === 2 && data.length === 1) {
+      inputValue += '/';
+    } else if (inputValue.length === 5 && data.length === 4) {
+      inputValue += '/';
+    }
+
+    setData(inputValue);
+  };
+  const handleHoraChange = (e) => {
+    const inputValue = e.target.value;
+    setHora(inputValue);
+  };
+
 
   return (
     <div className="body">
@@ -80,19 +103,23 @@ function CadastroEvento() {
             <div className="input-group">
               <label>Data*:</label>
               <input
-                type="date"
-                value={data}
-                onChange={(e) => setData(e.target.value)}
-              />
+                   type="text"
+                   value={data}
+                   placeholder="dd/mm/aaaa"
+                   maxLength="10"
+                   onChange={handleDataChange}
+                />
             </div>
 
             <div className="input-group">
               <label>Hora*:</label>
-              <input
-                type="time"
-                value={hora}
-                onChange={(e) => setHora(e.target.value)}
-              />
+               <input
+               type="time"
+                class="form-control" 
+                step="1" name="hora" 
+                id="hora"
+                onChange={handleHoraChange}
+                />
             </div>
 
             <div className="input-group">
@@ -103,19 +130,21 @@ function CadastroEvento() {
                 onChange={(e) => setTipoEvento(e.target.value)}
               >
                 <option value="">Selecione o tipo</option>
-                <option value="comedia">Comédia</option>
+                <option value="Comédia">Comédia</option>
                 <option value="teatro">Teatro</option>
                 <option value="cinema">Cinema</option>
                 <option value="festival">Festival </option>
-                <option value="musica">Música</option>
+                <option value="Musical">Musical</option>
               </select>
             </div>
+
             <div className="input-group">
-              <label className="fileInputContainer">
-                Banner do evento*
-                <img src={bannerImage} alt="Banner Image" />
-                <input type="file" id="fileInput" onChange={handleFileChange} />
-              </label>
+              <label>Prioridade*:</label>
+                <input
+                  type="checkbox"
+                  checked={prioridade}
+                  onChange={handlePrioridadeChange}
+                />
             </div>
           </div>
           <div className="botoes">

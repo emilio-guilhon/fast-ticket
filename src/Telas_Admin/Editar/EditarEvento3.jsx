@@ -16,7 +16,7 @@ function EditarEvento3() {
     <div className="body">
       <NavbarAdminEdits />
       <div className="contend">
-        <h1>Cadastrar Evento</h1>
+        <h1>Editar Evento</h1>
         <div className="forms">
           <p>Tipos de Ingressos:</p>
           <div className="input-group">

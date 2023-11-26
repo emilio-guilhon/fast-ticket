@@ -3,8 +3,8 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  width: 600px;
-  height: 400px;
+  width: 500px;
+  height: 200px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -16,4 +16,33 @@
   
   .modal-fundo {
     background-color: blur();
+  }
+
+  .modalCancelarTitulo{
+    margin: 0;
+    margin-left: -1px;
+    margin-top: -20px;
+    font-weight: none;
+    font-size: 20pt;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
+  .modalInfos p{
+    text-align: center;
+  }
+  .modal-header {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px; /* Adjust the padding as needed */
+    margin-bottom: 10px; /* Adjust the margin as needed */
+  }
+  .cancelamentoConfirma{
+    background-color: rgb(245, 35, 35);
+  }
+  .cancelamentoConfirma:hover{
+    background-color: rgb(206, 48, 48);
+  }
+  .modalInfos button{
+     margin-top: 60px;
+     float: right;
+     
   }
