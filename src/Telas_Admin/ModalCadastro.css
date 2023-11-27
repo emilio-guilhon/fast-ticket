@@ -1,4 +1,4 @@
-.modal-contend{
+.modal-contend {
   margin-top: 70px;
   background-color: #fff;
   padding: 20px;
@@ -12,37 +12,36 @@
   box-sizing: border-box;
   border: 1px solid black;
   z-index: 1000; /* Defina um valor alto para garantir que a modal sobreponha outros elementos */
-  }
-  
-  .modal-fundo {
-    background-color: blur();
-  }
+}
 
-  .modalCancelarTitulo{
-    margin: 0;
-    margin-left: -1px;
-    margin-top: -20px;
-    font-weight: none;
-    font-size: 20pt;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  }
+.modal-fundo {
+  background-color: blur();
+}
 
-  .modalInfos p{
-    text-align: center;
-  }
-  .modal-header {
-    border-bottom: 1px solid black;
-    padding-bottom: 10px; /* Adjust the padding as needed */
-    margin-bottom: 10px; /* Adjust the margin as needed */
-  }
-  .cancelamentoConfirma{
-    background-color: rgb(245, 35, 35);
-  }
-  .cancelamentoConfirma:hover{
-    background-color: rgb(206, 48, 48);
-  }
-  .modalInfos button{
-     margin-top: 60px;
-     float: right;
-     
-  }
+.modalCancelarTitulo {
+  margin: 0;
+  margin-left: -1px;
+  margin-top: -20px;
+  font-weight: none;
+  font-size: 20pt;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.modalInfos p {
+  text-align: center;
+}
+.modal-header {
+  border-bottom: 1px solid black;
+  padding-bottom: 10px; /* Adjust the padding as needed */
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}
+.cancelamentoConfirma {
+  background-color: rgb(245, 35, 35);
+}
+.cancelamentoConfirma:hover {
+  background-color: rgb(206, 48, 48);
+}
+.modalInfos button {
+  margin-top: 60px;
+  float: right;
+}

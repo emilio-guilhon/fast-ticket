@@ -103,11 +103,9 @@ function EditarEvento() {
                 onChange={(e) => setTipoEvento(e.target.value)}
               >
                 <option value="">Selecione o tipo</option>
-                <option value="comedia">Comédia</option>
-                <option value="teatro">Teatro</option>
-                <option value="cinema">Cinema</option>
-                <option value="festival">Festival </option>
-                <option value="musica">Música</option>
+                <option value="Comédia">Comédia</option>
+                <option value="Musical">Musical</option>
+                <option value="Cultural">Cultural</option>
               </select>
             </div>
             <div className="input-group">
@@ -122,10 +120,10 @@ function EditarEvento() {
             <Link to="/homeadmin">
               <button className="cancelar">Cancelar</button>
             </Link>
-            <Link to='/editareventos2'>
-            <button className="proximo" onClick={handleNext}>
-              Próximo
-            </button>
+            <Link to="/editareventos2">
+              <button className="proximo" onClick={handleNext}>
+                Próximo
+              </button>
             </Link>
           </div>
         </div>

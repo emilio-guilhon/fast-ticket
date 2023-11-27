@@ -42,8 +42,6 @@ body {
   margin-top: 40px;
   text-align: center;
   margin-left: 40px;
-  
-
 }
 .botoes {
   float: right;
@@ -55,19 +53,19 @@ body {
   text-decoration: none;
 }
 
-.numeroendereco{
-  width:530px ;
+.numeroendereco {
+  width: 530px;
 }
 
-.input-group label{
-    font-weight: bold;
+.input-group label {
+  font-weight: bold;
 }
 
-.endereco-titulo p{
+.endereco-titulo p {
   display: flex;
   font-size: 16pt;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 .cancelar {
   height: 50px;

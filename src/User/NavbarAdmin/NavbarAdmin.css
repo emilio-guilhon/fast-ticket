@@ -1,81 +1,78 @@
 .navbar-body {
-    background-color: #3F434A;
-    position: absolute;
-    height: 60px;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 10px 0;
-    flex-shrink: 0;
-  }
-  
- 
+  background-color: #3f434a;
+  position: absolute;
+  height: 60px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 10px 0;
+  flex-shrink: 0;
+}
 
 .Perfil {
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s, color 0.3s; /* Adiciona transição suave de cores */
-    float:right;
-  }
-  
-  .perfilInfo {
-    color: #fff; 
-    background: none; /* Remove o fundo padrão do botão */
-    border: none; 
-    font-size: 14pt;
-  }
-  .Perfil:hover {
-    background-color: #6b6e72; /* Altera a cor de fundo no hover */
-    border-radius: 10px;
-    
-  }
-  
-  .Perfil:hover img {
-    opacity: 0.7; /* Reduz a opacidade das imagens no hover */
-  }
-  
-  .Perfil:hover .perfilInfo {
-    color: #fafafa; /* Altera a cor do texto no hover */
-  }
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s; /* Adiciona transição suave de cores */
+  float: right;
+}
 
-  .texto-pesquisar {
-    width: 350px !important; /* Defina a largura desejada */
-  }
-  .perfil-container {
-    position: relative;
-  }
-  
-  .subitems {
-    list-style: none;
-    padding: 0;
-    position: absolute;
-    top: 43px;
-    left: -14%;
-    width: 100%; /* Largura automática para se adaptar ao conteúdo */
-    max-width: 450px; /* Largura máxima para limitar a largura em caso de nomes muito longos */
-    background-color: #D9D9D9;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
-    border-radius: 0 0 20px 20px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: black;
-  }
-  
-  .subitems li {
-    padding: 8px; /* Adicione espaçamento interno entre os subitens */
-    border-top: 1px solid #797373; /* Adicione uma borda superior entre os subitens */
-    list-style: none;
-  }
-  .subitems .logout-item {
-    list-style: none; /* Remover a marcação de lista */
-  }
-  
-  .subitems .logout-item a {
-    text-decoration: none; 
-    color: black; 
-  }
+.perfilInfo {
+  color: #fff;
+  background: none; /* Remove o fundo padrão do botão */
+  border: none;
+  font-size: 14pt;
+}
+.Perfil:hover {
+  background-color: #6b6e72; /* Altera a cor de fundo no hover */
+  border-radius: 10px;
+}
+
+.Perfil:hover img {
+  opacity: 0.7; /* Reduz a opacidade das imagens no hover */
+}
+
+.Perfil:hover .perfilInfo {
+  color: #fafafa; /* Altera a cor do texto no hover */
+}
+
+.texto-pesquisar {
+  width: 350px !important; /* Defina a largura desejada */
+}
+.perfil-container {
+  position: relative;
+}
+
+.subitems {
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  top: 43px;
+  left: -14%;
+  width: 100%; /* Largura automática para se adaptar ao conteúdo */
+  max-width: 450px; /* Largura máxima para limitar a largura em caso de nomes muito longos */
+  background-color: #d9d9d9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: black;
+}
+
+.subitems li {
+  padding: 8px; /* Adicione espaçamento interno entre os subitens */
+  border-top: 1px solid #797373; /* Adicione uma borda superior entre os subitens */
+  list-style: none;
+}
+.subitems .logout-item {
+  list-style: none; /* Remover a marcação de lista */
+}
+
+.subitems .logout-item a {
+  text-decoration: none;
+  color: black;
+}

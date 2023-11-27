@@ -1,24 +1,23 @@
 .navbar-body {
-    background-color: #3F434A;
-    position: absolute;
-    height: 60px;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 10px 0;
-    flex-shrink: 0;
-  }
-  
-.Logo button{
-    height: 55px;
-    border-radius: 10px;
-    border: 2px solid #3F434A;
-    background-color: #3F434A;
-    font-family: sans-serif;    
-    letter-spacing: 1px;
-    font-weight: 700;
-    color: #FFF;
-    font-size: 24pt;
+  background-color: #3f434a;
+  position: absolute;
+  height: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 10px 0;
+  flex-shrink: 0;
+}
 
+.Logo button {
+  height: 55px;
+  border-radius: 10px;
+  border: 2px solid #3f434a;
+  background-color: #3f434a;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #fff;
+  font-size: 24pt;
 }

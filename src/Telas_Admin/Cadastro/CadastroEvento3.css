@@ -108,12 +108,11 @@ body {
   font-size: 20px;
 }
 
-
-.addIngresso{
+.addIngresso {
   float: right;
 }
 
-.addIngresso button{
+.addIngresso button {
   height: 50px;
   width: 250px;
   border-radius: 20px;
@@ -128,21 +127,18 @@ body {
   margin-top: 150px;
 }
 
-.addIngresso button:hover{
-  background-color:#7d9fd3;
+.addIngresso button:hover {
+  background-color: #7d9fd3;
 }
-
-
 
 /* Adicione esta classe para controlar o espaçamento entre as colunas */
 
-.tabela-container{
+.tabela-container {
   max-width: 1000px;
   width: 100%;
   border: 2px solid black;
   border-radius: 20px;
   margin-left: 30px;
-  
 }
 .th-tipo-ingresso {
   width: 450px; /* Altere o valor conforme necessário */
@@ -152,13 +148,13 @@ body {
 
 .th-quantidade {
   width: 300px;
-  
 }
 
-.th-selecionar {
+.th-deletar {
   width: 150px;
 }
-th, td {
+th,
+td {
   padding: 10px; /* Adicione um preenchimento para melhorar a aparência */
 }
 
@@ -166,8 +162,8 @@ button {
   width: 100%; /* O botão ocupará 100% da largura da célula */
 }
 
-.th-buttton{
-  background-image: url('../../User/Pictures/trash2-fill.png');
+.th-buttton {
+  background-image: url("../../User/Pictures/trash2-fill.png");
   background-repeat: no-repeat;
   height: 20px;
   width: 20px;

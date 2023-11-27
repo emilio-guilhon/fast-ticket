@@ -88,7 +88,7 @@ function EditarEvento2() {
             <Link to="/homeadmin">
               <button className="cancelar">Cancelar</button>
             </Link>
-            <Link to="/EditarEvento3">
+            <Link to="/editareventos3">
               <button className="proximo" onClick={handleNext}>
                 Próximo
               </button>

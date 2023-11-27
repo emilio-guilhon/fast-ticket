@@ -3,17 +3,16 @@ import "./cadastro.css";
 import Navbar_LoginCadastro from "../../User/Navbar_LoginCadastro/Navbar_LoginCadastro";
 import { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import axios from 'axios';
+import axios from "axios";
 
 function Cadastro() {
-  
-  const [FormData,setFormData] = useState({
-    nomeCompleto: '',
-    email: '',
-    password: '',
-    confirmarSenha: '',
+  const [FormData, setFormData] = useState({
+    nomeCompleto: "",
+    email: "",
+    password: "",
+    confirmarSenha: "",
   });
- 
+
   //atualiza os dados do formulario de cadastro
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,34 +22,33 @@ function Cadastro() {
     }));
   };
   //envia os dados para a API/banco
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const { nomeCompleto, email, password, confirmarSenha } = FormData;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { nomeCompleto, email, password, confirmarSenha } = FormData;
 
-  const jsonData =JSON.stringify ({
-    "name": nomeCompleto,
-    "email": email,
-    "password": password,
-    "repeat_password": confirmarSenha 
-  });
-
-
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  axios.post("http://localhost:5000/user", jsonData, config)
-    .then(response => {
-       console.log(response.data);
-       alert("Cadastro realizado com sucesso!");
-    })
-    .catch(error => {
-      console.error('Erro no cadastro:', error);
+    const jsonData = JSON.stringify({
+      name: nomeCompleto,
+      email: email,
+      password: password,
+      repeat_password: confirmarSenha,
     });
-};
 
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .post("http://localhost:5000/user", jsonData, config)
+      .then((response) => {
+        console.log(response.data);
+        alert("Cadastro realizado com sucesso!");
+      })
+      .catch((error) => {
+        console.error("Erro no cadastro:", error);
+      });
+  };
 
   return (
     <div className="container">
@@ -111,7 +109,9 @@ const handleSubmit = (e) => {
               placeholder="Confirme sua Senha"
             />
           </div>
-          <button className="Button" type="submit">Cadastrar</button>
+          <button className="Button" type="submit">
+            Cadastrar
+          </button>
           <div className="footer">
             <p>Já possui cadastro?</p>
             <Link to="/login">

@@ -11,10 +11,10 @@ function CadastroEvento() {
   const [data, setData] = useState("");
   const [hora, setHora] = useState("");
   const [tipoEvento, setTipoEvento] = useState("");
-  const [prioridade,setPrioridade] = useState(false);
+  const [prioridade, setPrioridade] = useState(false);
   const history = useHistory();
 
- /* const handleFileChange = (event) => {
+  /* const handleFileChange = (event) => {
     const file = event.target.files[0]; // pega o arquivo na primeira posição
 
     if (file) {
@@ -25,7 +25,6 @@ function CadastroEvento() {
       reader.readAsDataURL(file);
     }
   }; */
-
 
   /*const handleUpload = () => {
     if (selectedFile) {
@@ -48,10 +47,9 @@ function CadastroEvento() {
       tipoEvento,
       prioridade,
     };
-     
+
     // Navegar para a próxima tela e passar os dados via estado
-     history.push("/cadastroeventos2", { eventoData });
-    
+    history.push("/cadastroeventos2", { eventoData });
   };
 
   const handleDataChange = (e) => {
@@ -59,9 +57,9 @@ function CadastroEvento() {
 
     // Adiciona barras automaticamente após o dia e o mês
     if (inputValue.length === 2 && data.length === 1) {
-      inputValue += '/';
+      inputValue += "/";
     } else if (inputValue.length === 5 && data.length === 4) {
-      inputValue += '/';
+      inputValue += "/";
     }
 
     setData(inputValue);
@@ -70,7 +68,6 @@ function CadastroEvento() {
     const inputValue = e.target.value;
     setHora(inputValue);
   };
-
 
   return (
     <div className="body">
@@ -103,23 +100,24 @@ function CadastroEvento() {
             <div className="input-group">
               <label>Data*:</label>
               <input
-                   type="text"
-                   value={data}
-                   placeholder="dd/mm/aaaa"
-                   maxLength="10"
-                   onChange={handleDataChange}
-                />
+                type="text"
+                value={data}
+                placeholder="dd/mm/aaaa"
+                maxLength="10"
+                onChange={handleDataChange}
+              />
             </div>
 
             <div className="input-group">
               <label>Hora*:</label>
-               <input
-               type="time"
-                class="form-control" 
-                step="1" name="hora" 
+              <input
+                type="time"
+                class="form-control"
+                step="1"
+                name="hora"
                 id="hora"
                 onChange={handleHoraChange}
-                />
+              />
             </div>
 
             <div className="input-group">
@@ -131,20 +129,18 @@ function CadastroEvento() {
               >
                 <option value="">Selecione o tipo</option>
                 <option value="Comédia">Comédia</option>
-                <option value="teatro">Teatro</option>
-                <option value="cinema">Cinema</option>
-                <option value="festival">Festival </option>
                 <option value="Musical">Musical</option>
+                <option value="Cultural">Cultural</option>
               </select>
             </div>
 
             <div className="input-group">
               <label>Prioridade*:</label>
-                <input
-                  type="checkbox"
-                  checked={prioridade}
-                  onChange={handlePrioridadeChange}
-                />
+              <input
+                type="checkbox"
+                checked={prioridade}
+                onChange={handlePrioridadeChange}
+              />
             </div>
           </div>
           <div className="botoes">
