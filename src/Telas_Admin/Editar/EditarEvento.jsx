@@ -6,13 +6,18 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
 function EditarEvento() {
-  const [bannerImage, setBannerImage] = useState(bannerimg);
-  const [tituloEvento, setTituloEvento] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [data, setData] = useState("");
-  const [hora, setHora] = useState("");
-  const [tipoEvento, setTipoEvento] = useState("");
+  const [ setBannerImage] = useState(bannerimg);
+  const [ setTituloEvento] = useState("");
+  const [ setDescricao] = useState("");
+  const [ setData] = useState("");
+  const [ setHora] = useState("");
+  const [ setTipoEvento] = useState("");
   const history = useHistory();
+  const eventoData = JSON.parse(localStorage.getItem('response'));
+  const {title,description,date,hour,show_type,priority,banner} = eventoData;
+
+  console.log(eventoData.id ," ",title);
+
 
   const handleFileChange = (event) => {
     const file = event.target.files[0]; // pega o arquivo na primeira posição
@@ -37,17 +42,38 @@ function EditarEvento() {
   const handleNext = () => {
     // função que exportará as variáveis para o próx arquivo
     const eventoData = {
-      tituloEvento,
-      descricao,
-      data,
-      hora,
-      tipoEvento,
-      bannerImage,
+     title,
+     description,
+     date,
+     hour,
+     show_type,
+     priority,
+     banner,
     };
 
     // Navegar para a próxima tela e passar os dados via estado
     history.push("/EditarEvento2", { eventoData });
   };
+
+
+  
+  const handleDataChange = (e) => {
+    let inputValue = e.target.value;
+
+    // Adiciona barras automaticamente após o dia e o mês
+    if (inputValue.length === 2 && date.length === 1) {
+      inputValue += "/";
+    } else if (inputValue.length === 5 && date.length === 4) {
+      inputValue += "/";
+    }
+
+    setData(inputValue);
+  };
+  const handleHoraChange = (e) => {
+    const inputValue = e.target.value;
+    setHora(inputValue);
+  };
+
 
   return (
     <div className="body">
@@ -62,8 +88,9 @@ function EditarEvento() {
               <input
                 type="text"
                 className="tituloevento"
-                value={tituloEvento}
+                value={title}
                 onChange={(e) => setTituloEvento(e.target.value)}
+                readOnly
               />
             </div>
 
@@ -72,7 +99,7 @@ function EditarEvento() {
               <textarea
                 rows="25"
                 cols="70"
-                value={descricao}
+                value={description}
                 onChange={(e) => setDescricao(e.target.value)}
               ></textarea>
             </div>
@@ -80,9 +107,11 @@ function EditarEvento() {
             <div className="input-group">
               <label>Data*:</label>
               <input
-                type="date"
-                value={data}
-                onChange={(e) => setData(e.target.value)}
+                type="text"
+                value={date}
+                placeholder="dd/mm/aaaa"
+                maxLength="10"
+                onChange={handleDataChange}
               />
             </div>
 
@@ -90,8 +119,12 @@ function EditarEvento() {
               <label>Hora*:</label>
               <input
                 type="time"
-                value={hora}
-                onChange={(e) => setHora(e.target.value)}
+                class="form-control"
+                step="1"
+                name="hora"
+                id="hora"
+                value={hour}
+                onChange={handleHoraChange}
               />
             </div>
 
@@ -99,7 +132,7 @@ function EditarEvento() {
               <label>Tipo de Evento*:</label>
               <select
                 className="tipoingresso"
-                value={tipoEvento}
+                value={show_type}
                 onChange={(e) => setTipoEvento(e.target.value)}
               >
                 <option value="">Selecione o tipo</option>
@@ -111,7 +144,7 @@ function EditarEvento() {
             <div className="input-group">
               <label className="fileInputContainer">
                 Banner do evento*
-                <img src={bannerImage} alt="Banner Image" />
+                <img src={bannerimg} alt="Banner Image" />
                 <input type="file" id="fileInput" onChange={handleFileChange} />
               </label>
             </div>

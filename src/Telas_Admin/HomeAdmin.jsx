@@ -45,6 +45,25 @@ function HomeAdmin() {
     console.log("id do evento asasdda: ", eventId);
   };
 
+  const handleGetInfos = async (eventoId) => {
+    try {
+      const showId = eventoId;
+      console.log(showId);
+  
+      const response = await axios.get(`http://localhost:5000/show/${showId}`);
+
+      
+      
+      // Armazenar as informações do show no localStorage com uma chave única
+      localStorage.setItem(`response`, JSON.stringify(response.data));
+  
+      console.log('Dados armazenados no localStorage:', response.data);
+      
+    } catch (error) {
+      console.error('Erro ao obter informações do evento:', error.message);
+    }
+  };
+
   return (
     <div className="home_body">
       <NavbarAdmin />
@@ -99,7 +118,7 @@ function HomeAdmin() {
                   <td>
                     <div className="acoesBotoes">
                       <Link to="/editareventos">
-                        <img src={editIcon} alt="" />
+                      <img src={editIcon} alt="" onClick={() => handleGetInfos(evento.id)} />
                       </Link>
                       <img
                         src={deleteIcon}

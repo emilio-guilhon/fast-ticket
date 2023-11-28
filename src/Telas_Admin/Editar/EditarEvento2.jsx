@@ -2,42 +2,29 @@ import React, { useState } from "react";
 import NavbarAdminEdits from "../../User/NavbarAdminEdits/NavbarAdminEdits";
 import "./EditarEvento2.css";
 import backimg from "../../User/Pictures/png-transparent-arrow-back-left-arrow-outline-icon-removebg-preview 3.png";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { Link,  useHistory } from "react-router-dom";
 
 function EditarEvento2() {
-  const [cep, setCep] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [numEndereco, setnumEndereco] = useState("");
+  const [ setCep] = useState("");
+  const [ setEndereco] = useState("");
+  const [ setnumEndereco] = useState("");
   const history = useHistory();
-  const location = useLocation();
-  const eventoData = location.state?.eventoData || {}; // Acessando dados passados por props
-  const { tituloEvento, descricao, data, hora, tipoEvento, bannerImage } =
-    eventoData;
-
+  const eventoData2 = JSON.parse(localStorage.getItem('response'));
+  const {address} = eventoData2;
+  const {cep,street,number} = address;
+  
+ 
+  
   const handleNext = () => {
-    const eventoData2 = {
+    const eventoDataFull = {
       //const que representa os dados das variáveis de cadastroEvento e cadastroEvento2
-      tituloEvento,
-      descricao,
-      data,
-      hora,
-      tipoEvento,
-      bannerImage,
       cep,
-      endereco,
-      numEndereco,
+      street,
+      number,
     };
     // Navegar para a próxima tela e passar os dados via estado
-    /* console.log('titulo: ', tituloEvento);
-    console.log('descricao: ', descricao);
-    console.log('data: ', data);
-    console.log('hora: ', hora);
-    console.log('tipo de evento: ', tipoEvento);
-    console.log('banner: ', bannerImage);
-    console.log('cep: ', cep);
-    console.log('endereço: ', endereco);
-    console.log('Número: ', numEndereco); */
-    history.push("/EditarEvento3", { eventoData2 });
+   
+    history.push("/EditarEvento3", { eventoDataFull });
   };
 
   return (
@@ -69,7 +56,7 @@ function EditarEvento2() {
                 rows="2"
                 cols="70"
                 className="endereço"
-                value={endereco}
+                value={street}
                 onChange={(e) => setEndereco(e.target.value)}
               ></textarea>
             </div>
@@ -79,7 +66,7 @@ function EditarEvento2() {
               <input
                 type="number"
                 className="numeroendereco"
-                value={numEndereco}
+                value={number}
                 onChange={(e) => setnumEndereco(e.target.value)}
               />
             </div>
