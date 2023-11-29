@@ -119,7 +119,6 @@ function EditarEvento() {
               <label>Hora*:</label>
               <input
                 type="time"
-                class="form-control"
                 step="1"
                 name="hora"
                 id="hora"
@@ -135,10 +134,8 @@ function EditarEvento() {
                 value={show_type}
                 onChange={(e) => setTipoEvento(e.target.value)}
               >
-                <option value="">Selecione o tipo</option>
-                <option value="Comédia">Comédia</option>
-                <option value="Musical">Musical</option>
-                <option value="Cultural">Cultural</option>
+                <option value="" readOnly>{show_type}</option>
+                 
               </select>
             </div>
             <div className="input-group">

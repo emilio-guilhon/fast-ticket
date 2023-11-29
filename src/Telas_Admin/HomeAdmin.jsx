@@ -18,7 +18,7 @@ function HomeAdmin() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/show");
+        const response = await axios.get("http://localhost:5000/show/adm");
         setEventos(response.data.items); // assuming the data is an array of events inside 'items'
         console.log(response.data.items);
       } catch (error) {
@@ -32,18 +32,32 @@ function HomeAdmin() {
   const handleOpenModal = (eventId) => {
     setEventDelete(eventId);
     setIsOpen(true);
-    console.log("id do evento: ", eventId);
   };
 
+ 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
 
-  const handleDeleteShow = async (eventId) => {
-    setEventDelete(eventId);
-    alert("Show deletado com sucesso!");
-    console.log("id do evento asasdda: ", eventId);
+  
+  const handleDeleteShow = async () => {
+    console.log('id do evento: ',eventoDelete);
+
+    try {
+      // Use o eventoDelete diretamente para obter o ID do evento
+      const response = await axios.patch(`http://localhost:5000/show/${eventoDelete}/cancel`);
+      console.log('Resposta ao excluir:', response.data);
+
+      // Atualize a lista de eventos após excluir
+      
+
+      // Feche o modal
+      handleCloseModal();
+    } catch (error) {
+      console.error("Erro ao excluir evento:", error);
+    }
   };
+
 
   const handleGetInfos = async (eventoId) => {
     try {
@@ -73,25 +87,25 @@ function HomeAdmin() {
             <button>Cadastro +</button>
           </Link>
           <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={handleCloseModal}
-            className="modal-contend"
-            shouldCloseOnOverlayClick={true}
+        isOpen={modalIsOpen}
+        onRequestClose={handleCloseModal}
+        className="modal-contend"
+        shouldCloseOnOverlayClick={true}
+      >
+        <div className="modal-header">
+          <h1 className="modalCancelarTitulo">Cancelar</h1>
+        </div>
+        <div className="modalInfos">
+          <p>Tem certeza que deseja cancelar o evento?</p>
+          <button
+            onClick={handleDeleteShow}
+            className="cancelamentoConfirma"
           >
-            <div className="modal-header">
-              <h1 className="modalCancelarTitulo">Cancelar</h1>
-            </div>
-            <form action="" className="modalInfos">
-              <p>Tem certeza que deseja cancelar o evento?</p>
-              <button
-                onClick={handleDeleteShow}
-                className="cancelamentoConfirma"
-              >
-                Sim
-              </button>
-              <button className="cancelamentoNega">Não</button>
-            </form>
-          </Modal>
+            Sim
+          </button>
+          <button className="cancelamentoNega" onClick={handleCloseModal}>Não</button>
+        </div>
+      </Modal>
         </div>
 
         <p className="Eventos-titulo">Eventos:</p>
@@ -109,7 +123,7 @@ function HomeAdmin() {
             <tbody>
               {eventos.map((evento) => (
                 <tr key={evento.id}>
-                  <td>{evento.imagem}</td>
+                  <td><img className="bannerImg" src={evento.banner} alt="" /></td>
                   <td>{evento.title}</td>
                   <td>{evento.date}</td>
                   <td>
@@ -135,6 +149,11 @@ function HomeAdmin() {
       </div>
     </div>
   );
-}
+              }
+            
+          
+        
+
+
 
 export default HomeAdmin;
