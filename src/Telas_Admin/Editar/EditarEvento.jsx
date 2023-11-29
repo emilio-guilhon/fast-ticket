@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import NavbarAdminEdits from "../../User/NavbarAdminEdits/NavbarAdminEdits";
 import "./EditarEvento.css";
 import bannerimg from "../../User/Pictures/receive_96629 1.png";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
+
+
 
 function EditarEvento() {
   const [ setBannerImage] = useState(bannerimg);
@@ -16,8 +18,8 @@ function EditarEvento() {
   const eventoData = JSON.parse(localStorage.getItem('response'));
   const {title,description,date,hour,show_type,priority,banner} = eventoData;
 
-  console.log(eventoData.id ," ",title);
-
+  
+  
 
   const handleFileChange = (event) => {
     const file = event.target.files[0]; // pega o arquivo na primeira posição

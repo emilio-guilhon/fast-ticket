@@ -13,19 +13,31 @@ Modal.setAppElement("#root");
 function HomeAdmin() {
   const [eventos, setEventos] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalConfirmIsOpen,setModalConfirmIsOpen] = useState(false);
   const [eventoDelete, setEventDelete] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/show/adm");
-        setEventos(response.data.items); // assuming the data is an array of events inside 'items'
-        console.log(response.data.items);
+        setEventos(response.data.items);
+  
+        // Acessar a propriedade 'canceled' em cada item de 'items'
+        const canceledItems = response.data.items.map(item => item.canceled);
+        //console.log('O  show foi cancelado?: ', canceledItems);
+        for (let i = 0; i<=canceledItems.length;i++){
+          let id = i + 1
+          let status = canceledItems[i]
+          if(status ===true){
+            console.log('id: ', id,'status: ', status)
+          }
+        }
+       
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
+  
     fetchData();
   }, []);
 
@@ -34,7 +46,15 @@ function HomeAdmin() {
     setIsOpen(true);
   };
 
- 
+  const handleOpenModalConfirm = () =>{
+    setModalConfirmIsOpen(true);
+  }
+  const handleCloseModalConfirm = ()=>{
+    setModalConfirmIsOpen(false);
+      // Recarregar a página
+      window.location.reload();
+  }
+
   const handleCloseModal = () => {
     setIsOpen(false);
   };
@@ -53,6 +73,7 @@ function HomeAdmin() {
 
       // Feche o modal
       handleCloseModal();
+      handleOpenModalConfirm();
     } catch (error) {
       console.error("Erro ao excluir evento:", error);
     }
@@ -64,15 +85,14 @@ function HomeAdmin() {
       const showId = eventoId;
       console.log(showId);
   
-      const response = await axios.get(`http://localhost:5000/show/${showId}`);
+     
+    const response = await axios.get(`http://localhost:5000/show/${showId}`);
+    
+    localStorage.clear();
+    localStorage.setItem(`response`, JSON.stringify(response.data));
+    console.log('Dados armazenados no localStorage:', response.data);
 
-      
-      
-      // Armazenar as informações do show no localStorage com uma chave única
-      localStorage.setItem(`response`, JSON.stringify(response.data));
-  
-      console.log('Dados armazenados no localStorage:', response.data);
-      
+
     } catch (error) {
       console.error('Erro ao obter informações do evento:', error.message);
     }
@@ -104,6 +124,23 @@ function HomeAdmin() {
             Sim
           </button>
           <button className="cancelamentoNega" onClick={handleCloseModal}>Não</button>
+        </div>
+      </Modal>
+      <Modal
+       isOpen={modalConfirmIsOpen}
+       onRequestClose={handleCloseModalConfirm}
+       className="modal-contend"
+       shouldCloseOnOverlayClick={true}
+       >
+        <div className="modal-header">
+          <h1 className="modalCancelarTitulo">Cancelar</h1>
+        </div>
+        <div className="modalInfos">
+        <form action="">
+          <p>Evento cancelado com sucesso!</p>
+
+          <button className="cancelamentoNega" onClick={handleCloseModalConfirm}>Ok</button>
+          </form>
         </div>
       </Modal>
         </div>

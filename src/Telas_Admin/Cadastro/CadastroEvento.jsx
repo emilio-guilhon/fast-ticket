@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NavbarAdminEdits from "../../User/NavbarAdminEdits/NavbarAdminEdits";
 import "./CadastroEvento.css";
-import bannerimg from "../../User/Pictures/receive_96629 1.png";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
@@ -14,25 +13,7 @@ function CadastroEvento() {
   const [prioridade, setPrioridade] = useState(false);
   const history = useHistory();
 
-  /* const handleFileChange = (event) => {
-    const file = event.target.files[0]; // pega o arquivo na primeira posição
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setBannerImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  }; */
-
-  /*const handleUpload = () => {
-    if (selectedFile) {
-      console.log("arquivo armazenado: ", selectedFile);
-    } else {
-      console.log('nenhum arquivo selecionado');
-    }
-  } */
+  
   const handlePrioridadeChange = () => {
     setPrioridade((prevState) => !prevState);
   };
@@ -47,7 +28,7 @@ function CadastroEvento() {
       tipoEvento,
       prioridade,
     };
-
+     console.log(eventoData)
     // Navegar para a próxima tela e passar os dados via estado
     history.push("/cadastroeventos2", { eventoData });
   };
@@ -112,7 +93,7 @@ function CadastroEvento() {
               <label>Hora*:</label>
               <input
                 type="time"
-                class="form-control"
+                
                 step="1"
                 name="hora"
                 id="hora"

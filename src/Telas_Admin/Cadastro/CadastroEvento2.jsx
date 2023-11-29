@@ -23,13 +23,10 @@ function CadastroEvento2() {
       hora,
       tipoEvento,
       prioridade,
-      cep,
-      street,
-      number,
-    };
-
+      address: { cep, street, number },
+    }
     // Navegar para a próxima tela e passar os dados via estado
-    history.push("/cadastroeventos3");
+    //history.push("/cadastroeventos3");
     // Armazenar temporariamente no localStorage
     localStorage.setItem("eventoData2", JSON.stringify(eventoData2));
     console.log(eventoData2);
