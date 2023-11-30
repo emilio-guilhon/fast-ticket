@@ -24,11 +24,12 @@ function HomeAdmin() {
   
         // Acessar a propriedade 'canceled' em cada item de 'items'
         const canceledItems = response.data.items.map(item => item.canceled);
+        console.log(canceledItems)
         //console.log('O  show foi cancelado?: ', canceledItems);
         for (let i = 0; i<=canceledItems.length;i++){
           let id = i + 1
           let status = canceledItems[i]
-          if(status ===true){
+          if(status ===false){
             console.log('id: ', id,'status: ', status)
           }
         }

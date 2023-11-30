@@ -4,7 +4,7 @@ import iconImg from "../Pictures/image 22.png";
 import "./NavbarCliente.css";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
-import { idUser } from "../../Telas/Login/Login";
+
 
 axios.interceptors.request.use(
   (config) => {
@@ -26,15 +26,17 @@ function NavbarCliente() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [areSubitemsVisible, setAreSubitemsVisible] = useState(false); // Novo estado para controlar a visibilidade dos subitens
   const { userId } = useParams();
+  const idUser = JSON.parse(localStorage.getItem('UserId'));
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        console.log(idUser);
         const response = await axios.get(
           `http://localhost:5000/user/${idUser}`
         );
         setUser(response.data);
-        console.log(response.data);
+        
       } catch (error) {
         console.error("Erro ao buscar dados do usuário:", error);
       }
@@ -64,7 +66,7 @@ function NavbarCliente() {
           <li className="Perfil">
             <img src={imagem} alt="Imagem" className="imagemFt" />
 
-            {/* Adiciona os subitens que serão visíveis quando o estado for true */}
+            
             <div
               className={`perfil-container ${areSubitemsVisible ? "open" : ""}`}
             >

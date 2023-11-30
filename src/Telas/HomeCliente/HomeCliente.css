@@ -1,0 +1,103 @@
+.body {
+    background-color: white;
+    min-height: 1000px;
+    margin-top: 80px; /* espaço mínimo para a navbar não interferir com a info da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: flex-start; /* Alinhe no topo da tela */
+  }
+  
+  .Evento-principal {
+    background-color: rgb(248, 248, 248);
+    border: 1px solid black;
+    height: 400px;
+    width: 850px;
+    margin-top: 20px; /* Ajuste a margem superior para posicionar um pouco mais acima */
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .titulo-principal {
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
+    margin-bottom: -10px; /*cria uma aproximação entre o título e a div com o evento*/
+    margin-top: 60px; /*cria um espaçamento entre o topo o o título do evento principal*/
+    font-size: 25px;
+  }
+  
+  .Demais-eventos {
+    height: 400px;
+    width: 900px;
+  }
+  
+  .x,
+  .y,
+  .z {
+    background-color: rgb(255, 251, 251);
+    border: 1px solid black;
+    height: 130px;
+    width: 190px;
+    display: inline-block; /* Aplica um display inline-block a cada div individual */
+    margin-right: 99px; /* espaçamento entre as divs*/
+  }
+  .titulo-demaisEventos {
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 25px;
+  }
+  
+  .evento-container {
+    width: 70%; /* 50% menos a margem entre os elementos */
+    display: flex;
+    flex-direction:row;
+    gap: 40px;
+  }
+  
+  .eventoBanner {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .infosPrioridade {
+    width: 100%;
+    margin-top: 10px; 
+    
+  }
+  
+  .tituloPrioridade {
+    font-weight: bold;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 1.25px;
+    width: 130%;
+    margin-bottom: 30px;
+  }
+
+  .dataPrioridade{
+    color: #3888FF;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .enderecoPrioridade{
+    color: #787878;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .verDetalhesPrioridade{
+    border: 1px solid black;
+    background-color: fff;
+    color:#3888FF ;
+    width: 160px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: serif;
+    letter-spacing: 1px;
+  }
+  .verDetalhesPrioridade:hover{
+    background-color: #dbd2d2;
+  }

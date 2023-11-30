@@ -28,17 +28,26 @@ function Login() {
         const response2 = await axios.get(`http://localhost:5000/user`);
         setUser(response2.data);
         const param = response2.data.items.length;
-
+        
         // Redirecione para a página principal
         console.log("Sucesso");
         const emails = response2.data.items.map((user) => user.email);
+        console.log(emails)
         let idTest = 0;
         for (let i = 0; i < param; i++) {
           if (email === emails[i]) {
             idTest = i + 1;
             idUser = idTest;
-            history.push("/homecliente");
+            if(email === 'user1@uece.com' && password === 'Teste04!@'){
+              history.push("/homeadmin");
+            }
+            else{
+               history.push("/homecliente");
+            }
+            
+            localStorage.setItem('UserId',idUser);
           }
+           
         }
       }
     } catch (error) {

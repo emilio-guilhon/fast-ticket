@@ -11,6 +11,8 @@ import CadastroEvento3 from "./Telas_Admin/Cadastro/CadastroEvento3";
 import EditarEvento from "./Telas_Admin/Editar/EditarEvento";
 import EditarEvento2 from "./Telas_Admin/Editar/EditarEvento2";
 import EditarEvento3 from "./Telas_Admin/Editar/EditarEvento3";
+import Recuperar_SenhaP1 from "./Telas/Recuperar_Senha/Recuperar_SenhaP1"
+import EventosDetalhes from "./Telas/EventosDetalhes/EventosDetalhes";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
       <header className="App-header">
         <Router>
           <Switch>
+            <Route path="/infosevento" component ={EventosDetalhes}/>
+            <Route path="/recuperarsenha" component ={Recuperar_SenhaP1}/>
             <Route path="/editareventos3" component={EditarEvento3} />
             <Route path="/editareventos2" component={EditarEvento2} />
             <Route path="/editareventos" component={EditarEvento} />

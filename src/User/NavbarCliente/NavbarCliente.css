@@ -21,6 +21,7 @@
   background: none; /* Remove o fundo padrão do botão */
   border: none;
   font-size: 14pt;
+  
 }
 .Perfil:hover {
   background-color: #6b6e72; /* Altera a cor de fundo no hover */
