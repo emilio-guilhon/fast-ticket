@@ -12,8 +12,10 @@ Modal.setAppElement("#root");
 
 function HomeAdmin() {
   const [eventos, setEventos] = useState([]);
+  const [selectedBanner, setSelectedBanner] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalConfirmIsOpen,setModalConfirmIsOpen] = useState(false);
+  const [modalBannerIsOpen,setModalBannerIsOpen] = useState(false);
   const [eventoDelete, setEventDelete] = useState(null);
 
   useEffect(() => {
@@ -21,9 +23,12 @@ function HomeAdmin() {
       try {
         const response = await axios.get("http://localhost:5000/show/adm");
         setEventos(response.data.items);
-  
+        console.log(response.data.items);
+
+        //Acessar a propriedade "banner" em cada item de 'items'
+
         // Acessar a propriedade 'canceled' em cada item de 'items'
-        const canceledItems = response.data.items.map(item => item.canceled);
+       /* const canceledItems = response.data.items.map(item => item.canceled);
         console.log(canceledItems)
         //console.log('O  show foi cancelado?: ', canceledItems);
         for (let i = 0; i<=canceledItems.length;i++){
@@ -32,7 +37,7 @@ function HomeAdmin() {
           if(status ===false){
             console.log('id: ', id,'status: ', status)
           }
-        }
+        }*/
        
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -42,6 +47,43 @@ function HomeAdmin() {
     fetchData();
   }, []);
 
+
+  const handleCheckBanner = (bannerData) => {
+    try {
+      if (bannerData === null) {
+        setSelectedBanner(bannerData);
+        setModalBannerIsOpen(true);
+      }
+    } catch (error) {
+      console.error("Erro ao verificar banner:", error);
+    }
+  };
+
+  const handleUpload = async(event) => {
+    // Lógica para processar o upload da imagem
+    const novaImagem = event.target.files[0];
+    if(novaImagem){
+      const reader = new FileReader();
+      reader.onload = () => {
+        setSelectedBanner(reader.result);
+      };
+      reader.readAsDataURL(novaImagem);
+    }
+    // Faça o que for necessário com a novaImagem, por exemplo, enviar para o servidor
+    console.log('Imagem carregada:', novaImagem);
+    try {
+      
+    } catch (error) {
+      
+    }
+  
+    // Depois de processar a imagem, você pode fazer algo com ela, por exemplo, atualizar o bannerData
+      
+  
+    // Fecha o modal
+    setModalBannerIsOpen(false);
+  };
+
   const handleOpenModal = (eventId) => {
     setEventDelete(eventId);
     setIsOpen(true);
@@ -50,12 +92,19 @@ function HomeAdmin() {
   const handleOpenModalConfirm = () =>{
     setModalConfirmIsOpen(true);
   }
+
+  const handleOpenModalBanner=()=>{
+    setModalBannerIsOpen(true);
+  }
   const handleCloseModalConfirm = ()=>{
     setModalConfirmIsOpen(false);
       // Recarregar a página
       window.location.reload();
   }
 
+  const handleCloseModalBanner = ()=>{
+    setModalBannerIsOpen(false);
+  }
   const handleCloseModal = () => {
     setIsOpen(false);
   };
@@ -144,6 +193,18 @@ function HomeAdmin() {
           </form>
         </div>
       </Modal>
+      <Modal
+        isOpen ={modalBannerIsOpen}
+        onRequestClose={handleCloseModalBanner}
+        className="modal-contend"
+        shouldCloseOnOverlayClick={true}
+      >
+        <div className="modalFile">
+          {/* Conteúdo do modal, incluindo o formulário de upload de imagem */}
+          <input type="file" onChange={handleUpload} />
+          <button onClick={handleCloseModalBanner}>Enviar</button>
+        </div>
+      </Modal>
         </div>
 
         <p className="Eventos-titulo">Eventos:</p>
@@ -161,7 +222,14 @@ function HomeAdmin() {
             <tbody>
               {eventos.map((evento) => (
                 <tr key={evento.id}>
-                  <td><img className="bannerImg" src={evento.banner} alt="" /></td>
+                  <td> <img
+                      className="bannerImg"
+                      src={evento.banner}
+                      onClick={() => handleCheckBanner(evento.banner)}
+                      alt=""
+                      
+                   />
+                  </td>
                   <td>{evento.title}</td>
                   <td>{evento.date}</td>
                   <td>

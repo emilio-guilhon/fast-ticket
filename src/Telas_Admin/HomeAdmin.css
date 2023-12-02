@@ -116,3 +116,17 @@
   height: 55px;
   width: 130px;
 }
+.modalFile{
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+.modalFile button{
+  height: 40px;
+  width: 130px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+.modalFile button:hover{
+  background-color: #d6d4d4;
+}
