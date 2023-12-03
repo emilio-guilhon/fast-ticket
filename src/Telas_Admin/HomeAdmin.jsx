@@ -59,30 +59,33 @@ function HomeAdmin() {
     }
   };
 
-  const handleUpload = async(event) => {
-    // Lógica para processar o upload da imagem
-    const novaImagem = event.target.files[0];
-    if(novaImagem){
-      const reader = new FileReader();
-      reader.onload = () => {
-        setSelectedBanner(reader.result);
-      };
-      reader.readAsDataURL(novaImagem);
-    }
-    // Faça o que for necessário com a novaImagem, por exemplo, enviar para o servidor
-    console.log('Imagem carregada:', novaImagem);
-    try {
-      
-    } catch (error) {
-      
-    }
-  
-    // Depois de processar a imagem, você pode fazer algo com ela, por exemplo, atualizar o bannerData
-      
-  
-    // Fecha o modal
-    setModalBannerIsOpen(false);
+  const handleUpload = async (event) => {
+  // Lógica para processar o upload da imagem
+  const novaImagem = event.target.files[0];
+  const idShow = localStorage.getItem('idShow');
+  console.log(idShow);
+
+  // Crie um objeto FormData
+  const formData = new FormData();
+  formData.append('banner', novaImagem); // O nome 'banner' deve corresponder ao esperado pelo servidor
+  console.log(formData)
+  // Adicione o token de autorização ao cabeçalho
+  const headers = {
+    'Content-Type': 'multipart/form-data',
+    Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4CI6MzA0ODQ4ODY5NDl9.o0d1AIzyF9GSRQG6abcAijkaWx_jaRq0RD4Ka3tjQIQ',
   };
+
+  try {
+    // Envie a solicitação POST usando axios
+    const response = await axios.patch(`http://localhost:5000/show/${idShow}/banner`, formData, { headers });
+
+    // Lide com a resposta
+    console.log('Resposta do servidor:', response.data);
+  } catch (error) {
+    // Lide com erros
+    console.error('Erro ao enviar solicitação:', error);
+  }
+};
 
   const handleOpenModal = (eventId) => {
     setEventDelete(eventId);
@@ -134,11 +137,11 @@ function HomeAdmin() {
     try {
       const showId = eventoId;
       console.log(showId);
-  
      
     const response = await axios.get(`http://localhost:5000/show/${showId}`);
     
     localStorage.clear();
+    localStorage.setItem('idShow',JSON.stringify(showId)); //salva o id o evento para ser usado em outras funções
     localStorage.setItem(`response`, JSON.stringify(response.data));
     console.log('Dados armazenados no localStorage:', response.data);
 
@@ -198,6 +201,7 @@ function HomeAdmin() {
         onRequestClose={handleCloseModalBanner}
         className="modal-contend"
         shouldCloseOnOverlayClick={true}
+        
       >
         <div className="modalFile">
           {/* Conteúdo do modal, incluindo o formulário de upload de imagem */}

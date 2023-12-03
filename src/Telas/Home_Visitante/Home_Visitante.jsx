@@ -59,7 +59,7 @@ function Home_Visitante() {
               <div className="Demais-eventos">
                       {eventosRegulares.map((evento, index) => (
                         <div key={index} className={`evento evento-${index}`}>
-                          <img src={evento.banner} alt="eventoBannerRegular" />
+                          <img src={evento.banner} className="eventobannerRegular" alt="eventoBannerRegular" />
                           <p> {evento.date}</p>
                           <p>{evento.title}</p>
                           <p>{evento.address.street}</p>
