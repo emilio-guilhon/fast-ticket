@@ -10,10 +10,16 @@ function CadastroEvento3() {
   const [Quantidade, setQuantidade] = useState("");
   const [ingressosAdicionados, setIngressosAdicionados] = useState([]);
   const eventoData2 = JSON.parse(localStorage.getItem("eventoData2")) || {};
-  const {tituloEvento,descricao,data,hora,tipoEvento,prioridade,address} = eventoData2
- const {cep,street,number} = address;
-
- 
+  const {
+    tituloEvento,
+    descricao,
+    data,
+    hora,
+    tipoEvento,
+    prioridade,
+    address,
+  } = eventoData2;
+  const { cep, street, number } = address;
 
   const handleAddTicket = () => {
     // Verifica se ambos os campos estão preenchidos
@@ -61,7 +67,7 @@ function CadastroEvento3() {
   };
 
   const district = ".";
-  const city = "Fortaleza";
+  //const city = "Fortaleza";
   const handleNext = async (e) => {
     e.preventDefault();
     const eventoData3 = {
@@ -72,7 +78,11 @@ function CadastroEvento3() {
       show_type: tipoEvento,
       priority: prioridade,
       address: {
-        cep,street,number,district,city
+        cep,
+        street,
+        number,
+        district,
+        // city,
       },
       tickets: ingressosAdicionados.map((ingresso) => ({
         ticket_type: ingresso.tipoIngresso,

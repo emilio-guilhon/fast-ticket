@@ -130,3 +130,12 @@ body {
 .addIngresso button:hover {
   background-color: #7d9fd3;
 }
+.th-buttton {
+  background-image: url("../../User/Pictures/trash2-fill.png");
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+  margin-left: 65px;
+  cursor: pointer;
+  border: none;
+}

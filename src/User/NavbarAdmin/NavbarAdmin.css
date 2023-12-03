@@ -76,3 +76,7 @@
   text-decoration: none;
   color: black;
 }
+.Perfil .mostrarMais {
+  float: inline-end;
+  align-items: center;
+}

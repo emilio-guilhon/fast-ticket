@@ -24,7 +24,7 @@ function CadastroEvento2() {
       tipoEvento,
       prioridade,
       address: { cep, street, number },
-    }
+    };
     // Navegar para a próxima tela e passar os dados via estado
     //history.push("/cadastroeventos3");
     // Armazenar temporariamente no localStorage

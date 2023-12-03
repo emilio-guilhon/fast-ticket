@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import NavbarAdminEdits from "../../User/NavbarAdminEdits/NavbarAdminEdits";
 import "./EditarEvento2.css";
 import backimg from "../../User/Pictures/png-transparent-arrow-back-left-arrow-outline-icon-removebg-preview 3.png";
-import { Link,  useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function EditarEvento2() {
-  const [ setCep] = useState("");
-  const [ setEndereco] = useState("");
-  const [ setnumEndereco] = useState("");
+  const [setCep] = useState("");
+  const [setEndereco] = useState("");
+  const [setnumEndereco] = useState("");
   const history = useHistory();
-  const eventoData2 = JSON.parse(localStorage.getItem('response'));
-  const {address} = eventoData2;
-  const {cep,street,number} = address;
-  
- 
-  
+  const eventoData2 = JSON.parse(localStorage.getItem("response"));
+  const { address } = eventoData2;
+  const { cep, street, number } = address;
+
   const handleNext = () => {
     const eventoDataFull = {
       //const que representa os dados das variáveis de cadastroEvento e cadastroEvento2
@@ -23,7 +21,7 @@ function EditarEvento2() {
       number,
     };
     // Navegar para a próxima tela e passar os dados via estado
-   
+
     history.push("/EditarEvento3", { eventoDataFull });
   };
 
@@ -31,7 +29,7 @@ function EditarEvento2() {
     <div className="body">
       <NavbarAdminEdits />
       <div className="contend">
-        <Link to="/EditarEvento">
+        <Link to="/editareventos">
           <img src={backimg} className="voltarIcon"></img>
         </Link>
         <h1>Editar Evento</h1>
