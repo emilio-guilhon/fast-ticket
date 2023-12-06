@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import NavbarAdminEdits from "../../User/NavbarAdminEdits/NavbarAdminEdits";
 import "./EditarEvento3.css";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import backimg from "../../User/Pictures/png-transparent-arrow-back-left-arrow-outline-icon-removebg-preview 3.png";
-
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 function EditarEvento3() {
   const [tipoIngresso, setTipoIngresso] = useState("");
   const [Quantidade, setQuantidade] = useState("");
   const [ingressosAdicionados, setIngressosAdicionados] = useState([]);
-  let [tiposEQuantidades, setTiposEquantidades] = useState([]);
+  const [tiposEQuantidades, setTiposEquantidades] = useState([]);
+  const location = useLocation();
+  const eventoDataFull = location.state?.eventoDataFull;
   const eventoData3 = JSON.parse(localStorage.getItem("response")) || {};
   const {
     title,
@@ -24,21 +26,27 @@ function EditarEvento3() {
     number,
     tickets,
   } = eventoData3;
-
-  tiposEQuantidades = tickets.map((ingresso) => ({
-    tipoIngresso: ingresso.ticket_type,
-    quantidadeDisponivel: ingresso.total_quantity,
-  }));
-
-  const handleAddTicket = () => {
-    // Verifica se ambos os campos estão preenchidos
+  useEffect(() => {
+    const tiposEQuantidadesAtualizados = tickets.map((ingresso) => ({
+      tipoIngresso: ingresso.ticket_type,
+      quantidadeDisponivel: ingresso.total_quantity,
+    }));
+    setTiposEquantidades(tiposEQuantidadesAtualizados);
+  }, [tickets]);
+  const handleDeleteTicket = useCallback(
+    (index) => {
+      const updatedTiposEQuantidades = tiposEQuantidades.filter(
+        (_, i) => i !== index
+      );
+      setTiposEquantidades(updatedTiposEQuantidades);
+    },
+    [tiposEQuantidades, setTiposEquantidades]
+  );
+  const handleAddTicket = useCallback(() => {
     if (tipoIngresso && Quantidade) {
-      // Verifica se já existe um ingresso do mesmo tipo na lista
       const ingressoExistente = ingressosAdicionados.find(
         (ingresso) => ingresso.tipoIngresso === tipoIngresso
       );
-
-      // Se já existe, atualiza a quantidade
       if (ingressoExistente) {
         const novosIngressos = ingressosAdicionados.map((ingresso) =>
           ingresso.tipoIngresso === tipoIngresso
@@ -49,39 +57,29 @@ function EditarEvento3() {
               }
             : ingresso
         );
-
         setIngressosAdicionados(novosIngressos);
       } else {
-        // Se não existe, adiciona um novo ingresso
         const novoIngresso = {
           tipoIngresso,
           Quantidade,
         };
         setIngressosAdicionados([...ingressosAdicionados, novoIngresso]);
       }
-
-      // Atualiza a variável tiposEquantidades
-      setTiposEquantidades([
-        ...tiposEQuantidades,
-        { tipo: tipoIngresso, quantidade: Quantidade },
-      ]);
-
-      // Limpa os campos após adicionar
       setTipoIngresso("");
       setQuantidade("");
     } else {
       alert("Preencha todos os campos");
     }
-  };
-  //ao clicar no icone da lixeira ela apagará a respectiva linha da tabela
-  const handleDeleteTicket = (index) => {
-    const updatedIngressos = [...ingressosAdicionados];
-    updatedIngressos.splice(index, 1);
-    setIngressosAdicionados(updatedIngressos);
-  };
-
+  }, [
+    tipoIngresso,
+    Quantidade,
+    ingressosAdicionados,
+    setIngressosAdicionados,
+    setTipoIngresso,
+    setQuantidade,
+  ]);
+  const eventoId = localStorage.getItem("idShow");
   const district = "string";
-  const city = "Fortaleza";
   const handleNext = async (e) => {
     e.preventDefault();
     const eventoData3 = {
@@ -98,30 +96,28 @@ function EditarEvento3() {
         district,
         number,
         street,
-        city,
       },
       tickets: ingressosAdicionados.map((ingresso) => ({
         ticket_type: ingresso.tipoIngresso,
         total_quantity: parseInt(ingresso.Quantidade),
       })),
     };
-
-    //envia os dados para a API
     const jsonData = JSON.stringify(eventoData3);
     const bearer =
       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MzA0ODQ4ODY5NDl9.o0d1AIzyF9GSRQG6abcAijkaWx_jaRq0RD4Ka3tjQIQ";
+    const eventoId = localStorage.getItem("idShow");
     try {
       console.log("Enviando solicitação:", jsonData);
-      const response = await axios.post(
-        "http://localhost:5000/show",
+      const response = await axios.patch(
+        `http://localhost:5000/show/${eventoId}`,
         jsonData,
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${bearer}`,
           },
         }
       );
-
       console.log("Resposta recebida:", response.data);
       alert("Cadastro feito com sucesso!");
     } catch (error) {
@@ -198,7 +194,9 @@ function EditarEvento3() {
                           <button
                             className="th-buttton"
                             onClick={() => handleDeleteTicket(index)}
-                          ></button>
+                          >
+                            Deletar
+                          </button>
                         </td>
                       </tr>
                     ))}
