@@ -20,13 +20,16 @@ function EditarEvento2() {
       setNumEndereco(eventoData2.address.number || "");
     }
   }, []);
-
+  const address = {
+    cep: cep,
+    district: "string", // Substitua 'string' pelo valor correto, se necessário
+    number: numEndereco,
+    street: endereco,
+  };
   const handleNext = () => {
     const eventoDataFull = {
       ...eventoData,
-      cep,
-      endereco,
-      numEndereco,
+      address,
     };
     history.push("/editareventos3", { eventoDataFull });
   };
@@ -89,6 +92,7 @@ function EditarEvento2() {
       </div>
     </div>
   );
+  console.log(eventoData);
 }
 
 export default EditarEvento2;

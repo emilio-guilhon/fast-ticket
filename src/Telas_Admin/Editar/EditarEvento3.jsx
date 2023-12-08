@@ -13,90 +13,64 @@ function EditarEvento3() {
   const location = useLocation();
   const eventoDataFull = location.state?.eventoDataFull;
   const eventoData3 = JSON.parse(localStorage.getItem("response")) || {};
-  const {
-    title,
-    description,
-    date,
-    hour,
-    show_type,
-    priority,
-    banner,
-    cep,
-    street,
-    number,
-    tickets,
-  } = eventoData3;
+  const { tickets } = eventoData3;
   useEffect(() => {
     const tiposEQuantidadesAtualizados = tickets.map((ingresso) => ({
       tipoIngresso: ingresso.ticket_type,
       quantidadeDisponivel: ingresso.total_quantity,
     }));
     setTiposEquantidades(tiposEQuantidadesAtualizados);
-  }, [tickets]);
+  }, []);
   const handleDeleteTicket = useCallback(
-    (index) => {
-      const updatedTiposEQuantidades = tiposEQuantidades.filter(
-        (_, i) => i !== index
+    (tipoIngressoParaDeletar) => {
+      const novosIngressos = ingressosAdicionados.filter(
+        (ingresso) => ingresso.tipoIngresso !== tipoIngressoParaDeletar
       );
-      setTiposEquantidades(updatedTiposEQuantidades);
+      setIngressosAdicionados(novosIngressos);
+
+      const novosTiposEQuantidades = tiposEQuantidades.filter(
+        (ingresso) => ingresso.tipoIngresso !== tipoIngressoParaDeletar
+      );
+      setTiposEquantidades(novosTiposEQuantidades);
     },
-    [tiposEQuantidades, setTiposEquantidades]
+    [ingressosAdicionados, tiposEQuantidades]
   );
   const handleAddTicket = useCallback(() => {
     if (tipoIngresso && Quantidade) {
-      const ingressoExistente = ingressosAdicionados.find(
+      const ingressoExistenteIndex = tiposEQuantidades.findIndex(
         (ingresso) => ingresso.tipoIngresso === tipoIngresso
       );
-      if (ingressoExistente) {
-        const novosIngressos = ingressosAdicionados.map((ingresso) =>
-          ingresso.tipoIngresso === tipoIngresso
-            ? {
-                ...ingresso,
-                Quantidade:
-                  parseInt(ingresso.Quantidade) + parseInt(Quantidade),
-              }
-            : ingresso
-        );
-        setIngressosAdicionados(novosIngressos);
-      } else {
-        const novoIngresso = {
-          tipoIngresso,
-          Quantidade,
+      let novosTiposEQuantidades = [...tiposEQuantidades];
+
+      if (ingressoExistenteIndex !== -1) {
+        // Atualiza a quantidade do ingresso existente
+        novosTiposEQuantidades[ingressoExistenteIndex] = {
+          ...novosTiposEQuantidades[ingressoExistenteIndex],
+          quantidadeDisponivel:
+            parseInt(
+              novosTiposEQuantidades[ingressoExistenteIndex]
+                .quantidadeDisponivel
+            ) + parseInt(Quantidade),
         };
-        setIngressosAdicionados([...ingressosAdicionados, novoIngresso]);
+      } else {
+        // Adiciona um novo ingresso
+        novosTiposEQuantidades.push({
+          tipoIngresso,
+          quantidadeDisponivel: parseInt(Quantidade),
+        });
       }
+
+      setTiposEquantidades(novosTiposEQuantidades);
       setTipoIngresso("");
       setQuantidade("");
     } else {
       alert("Preencha todos os campos");
     }
-  }, [
-    tipoIngresso,
-    Quantidade,
-    ingressosAdicionados,
-    setIngressosAdicionados,
-    setTipoIngresso,
-    setQuantidade,
-  ]);
-  const eventoId = localStorage.getItem("idShow");
-  const district = "string";
+  }, [tipoIngresso, Quantidade, tiposEQuantidades]);
   const handleNext = async (e) => {
     e.preventDefault();
     const eventoData3 = {
-      title: title,
-      description: description,
-      date: date,
-      hour: hour,
-      show_type: show_type,
-      priority: priority,
-      banner: banner,
-
-      address: {
-        cep,
-        district,
-        number,
-        street,
-      },
+      ...eventoDataFull,
       tickets: ingressosAdicionados.map((ingresso) => ({
         ticket_type: ingresso.tipoIngresso,
         total_quantity: parseInt(ingresso.Quantidade),
@@ -170,7 +144,6 @@ function EditarEvento3() {
               <button onClick={handleAddTicket}>Adicionar ingresso +</button>
             </div>
           </div>
-
           <div className="infosGeral">
             <p className="addIngressosTitulo">Ingressos adicionados: </p>
             <div className="tabela-container">
@@ -186,14 +159,16 @@ function EditarEvento3() {
                     </tr>
                   </thead>
                   <tbody>
-                    {tiposEQuantidades.map((ingresso, index) => (
-                      <tr key={index}>
+                    {tiposEQuantidades.map((ingresso) => (
+                      <tr key={ingresso.tipoIngresso}>
                         <td>{ingresso.tipoIngresso}</td>
                         <td>{ingresso.quantidadeDisponivel}</td>
                         <td>
                           <button
                             className="th-buttton"
-                            onClick={() => handleDeleteTicket(index)}
+                            onClick={() =>
+                              handleDeleteTicket(ingresso.tipoIngresso)
+                            }
                           >
                             Deletar
                           </button>
@@ -205,7 +180,6 @@ function EditarEvento3() {
               </div>
             </div>
           </div>
-
           <div className="botoes">
             <Link to="/homeadmin">
               <button className="cancelar">Cancelar</button>

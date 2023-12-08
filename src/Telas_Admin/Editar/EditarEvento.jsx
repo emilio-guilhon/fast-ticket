@@ -66,6 +66,7 @@ function EditarEvento() {
                 className="tituloevento"
                 value={tituloEvento}
                 onChange={(e) => setTituloEvento(e.target.value)}
+                readOnly
               />
             </div>
 
