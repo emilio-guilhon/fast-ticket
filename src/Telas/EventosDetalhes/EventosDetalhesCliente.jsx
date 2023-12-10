@@ -16,6 +16,7 @@ function EventosDetalhesCliente() {
   const [ticketsInfo] = useState([]);
   const [countInteira, setCountInteira] = useState(0);
   const [countMeia, setCountMeia] = useState(0);
+  const [countMeiaSolidaria,setCountMeiaSolidaria] = useState(0);
   const [ticket_qnt,setTicket_qnt] = useState(0);
   const [modalIsOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem('UserToken');
@@ -30,75 +31,80 @@ function EventosDetalhesCliente() {
     setIsOpen(false);
   }
   const handleShowTicket = (ticket_type) => {
-    if (ticket_type === 'Inteira') {
-      if (countInteira < 2) {
+    // Verificar se o total de ingressos selecionados é menor que 2
+    if (countInteira + countMeia + countMeiaSolidaria < 2) {
+      if (ticket_type === 'Inteira') {
         setCountInteira(countInteira + 1);
-        
-        if(countInteira ===1 && countMeia ===1){
-          setCountInteira(0);
-        }
-      }
-      else {
-        setCountInteira(0);
-        console.log('resetando ingresso inteira');
-      }
-    } else if (ticket_type === 'Meia') {
-      if (countMeia < 2) {
+      } else if (ticket_type === 'Meia') {
         setCountMeia(countMeia + 1);
-        
-        if(countMeia === 1 && countInteira ===1){
-          setCountMeia(0);
-        }
-      } else {
-        setCountMeia(0);
-        console.log('resetando ingresso meia');
+      } else if (ticket_type === 'Meia Solidária') {
+        setCountMeiaSolidaria(countMeiaSolidaria + 1);
       }
     }
-  }
-
+  
+    // Restrição adicional para a combinação de ingressos
+    if (countInteira === 1 && countMeia === 1) {
+      setCountInteira(0);
+      setCountMeiaSolidaria(0);
+    }
+    if (countMeia === 1 && countMeiaSolidaria === 1) {
+      setCountMeia(0);
+    }
+    if (countMeiaSolidaria === 1 && countInteira === 1) {
+      setCountMeiaSolidaria(0);
+      setCountMeia(0);
+    }
+  };
   //função que vai enviar os dados para a Api
-  const handleSendRequest = async(countInteira, countMeia) => {
+  const handleSendRequest = async(countInteira, countMeia , countMeiaSolidaria) => {
  // Cria um array para armazenar objetos de ingresso
-const ingressosArray = [];
+  const ingressosArray = [];
 
-// Verifica se há ingressos Inteira selecionados
-if (countInteira > 0) {
-  ingressosArray.push({
-    ticket_type: 'Inteira',
-    quantity: countInteira,
-  });
-}
+    // Verifica se há ingressos Inteira selecionados
+    if (countInteira > 0) {
+      ingressosArray.push({
+        ticket_type: 'Inteira',
+        quantity: countInteira,
+      });
+    }
 
-// Verifica se há ingressos Meia selecionados
-if (countMeia > 0) {
-  ingressosArray.push({
-    ticket_type: 'Meia',
-    quantity: countMeia,
-  });
-}
+    // Verifica se há ingressos Meia selecionados
+    if (countMeia > 0) {
+      ingressosArray.push({
+        ticket_type: 'Meia',
+        quantity: countMeia,
+      });
+    }
+    //Veridica se há ingressos Meia Solidária selecionados
+    if (countMeiaSolidaria >0){
+      ingressosArray.push({
+        ticket_type:'Meia Solidária',
+        quantity:countMeiaSolidaria,
+      }); 
+    }
 
+    // Enviar para a Api
+    console.log(ingressosArray);
+    const userToken = `Bearer + ${token}`
+    try {
+      const response = await axios.post(`http://localhost:5000/show/${id}/ticket`, { tickets: ingressosArray }, {
+        headers: {
+          Authorization: 'Bearer '+ token,
+        },
+      });
+      console.log('resposta: ',response.data);
+      console.log('Bearer ' + token)
+      console.log('user token : ',userToken);
+      if (response.status === 200 || response.status ===201) {
+        console.log('Sucesso!');
+      }
+      
+    } catch (error) {
+      console.log('Erro:', error);
+    }
+    handleOpenModal(true);
 
-// Enviar para a Api
-console.log(ingressosArray);
-const userToken = `Bearer + ${token}`
-try {
-  const response = await axios.post(`http://localhost:5000/show/${id}/ticket`, { tickets: ingressosArray }, {
-    headers: {
-      Authorization: 'Bearer '+ token,
-    },
-  });
-   console.log('resposta: ',response.data);
-   console.log('Bearer ' + token)
-   console.log('user token : ',userToken);
-  if (response.status === 200 || response.status ===201) {
-    console.log('Sucesso!');
-  }
-} catch (error) {
-  console.log('Erro:', error);
-}
-handleOpenModal(true);
-
-}
+    }
   
   return (
     <div className="body">
@@ -130,21 +136,21 @@ handleOpenModal(true);
           <div className="ingressosTable">
             <p className='IngressosTitulo'>Ingressos disponíveis: </p>
             {tickets.map((ticket, index) => (
-              <div key={index}>
-                <div className={`ticketContainer ${ticket.ticket_type === 'Inteira' ? 'inteiraBotao' : 'meiaBotao'}`} onClick={() => handleShowTicket(ticket.ticket_type)}>
-                  <div className='ticketInfo'>
-                    {ticket.ticket_type === 'Meia' ? 'Meia' : 'Inteira'}: Grátis <br />
-                    Ingressos disponíveis: {ticket.total_quantity} <br />
-                  </div>
-                  <div className='ticketAdd'>
-                    <img className='ticketAddIcon' src={addTicketIcon} alt="" />
-                  </div>
-                  <div className="countTicket">
-                  {ticket.ticket_type === 'Meia' ? countMeia : countInteira}
-                  </div>
-                </div>
-              </div>
-            ))}
+  <div key={index}>
+    <div className={`ticketContainer ${ticket.ticket_type === 'Inteira' ? 'inteiraBotao' : (ticket.ticket_type === 'Meia' ? 'meiaBotao' : 'meiaSolidariaBotao')}`} onClick={() => handleShowTicket(ticket.ticket_type)}>
+      <div className='ticketInfo'>
+        {ticket.ticket_type === 'Meia Solidária' ? 'Meia Solidária' : (ticket.ticket_type === 'Meia' ? 'Meia' : 'Inteira')}: Grátis <br />
+        Ingressos disponíveis: {ticket.total_quantity} <br />
+      </div>
+      <div className='ticketAdd'>
+        <img className='ticketAddIcon' src={addTicketIcon} alt="" />
+      </div>
+      <div className="countTicket">
+        {ticket.ticket_type === 'Meia Solidária' ? countMeiaSolidaria : (ticket.ticket_type === 'Meia' ? countMeia : countInteira)}
+      </div>
+    </div>
+  </div>
+))}
             <p className='obs'>Obs: Só é possível garantir dois ingressos por usuário</p>
             <button className='salvarCompra' onClick={()=>handleSendRequest(countInteira,countMeia)}>Salvar compra</button>
           </div>
