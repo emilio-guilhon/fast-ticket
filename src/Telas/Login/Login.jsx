@@ -40,7 +40,7 @@ function Login() {
           if (email === emails[i]) {
             idTest = i + 1;
             idUser = idTest;
-            if(email === 'user1@uece.com' && password === 'Teste04!@'){
+            if(email === 'pedrommelqui@gmail.com' && password === 'Teste04!@'){
               history.push("/homeadmin");
             }
             else{
