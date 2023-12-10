@@ -83,6 +83,7 @@
   height: 30px;
   width: 30px;
   display: flex;
+  margin-right: 38px;
   gap: 10px;
 }
 

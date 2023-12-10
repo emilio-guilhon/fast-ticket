@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import "./ModalCadastro.css";
 import "./HomeAdmin.css";
 import NavbarAdmin from "../User/NavbarAdmin/NavbarAdmin";
@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import axios from "axios";
 import deleteIcon from "./../User/Pictures/deletteIcon.png";
 import editIcon from "./../User/Pictures/editIcon.png";
+import Estatistic from "./../User/Pictures/feedback img 1.png"
 
 Modal.setAppElement("#root");
 
@@ -17,36 +18,33 @@ function HomeAdmin() {
   const [modalConfirmIsOpen,setModalConfirmIsOpen] = useState(false);
   const [modalBannerIsOpen,setModalBannerIsOpen] = useState(false);
   const [eventoDelete, setEventDelete] = useState(null);
+  const admToken = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MzA0ODQ4ODY5NDl9.o0d1AIzyF9GSRQG6abcAijkaWx_jaRq0RD4Ka3tjQIQ';
+  const history = useHistory();
+  const [statusEventos, setStatusEventos] = useState([]);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/show/adm");
         setEventos(response.data.items);
-        console.log(response.data.items);
+        
+        const canceledItems = response.data.items.map(item => item.canceled);
 
-        //Acessar a propriedade "banner" em cada item de 'items'
-
-        // Acessar a propriedade 'canceled' em cada item de 'items'
-       /* const canceledItems = response.data.items.map(item => item.canceled);
-        console.log(canceledItems)
-        //console.log('O  show foi cancelado?: ', canceledItems);
-        for (let i = 0; i<=canceledItems.length;i++){
-          let id = i + 1
-          let status = canceledItems[i]
-          if(status ===false){
-            console.log('id: ', id,'status: ', status)
-          }
-        }*/
-       
+        // Atualizar os status e armazenar em statusEventos
+        const novosStatus = canceledItems.map((isCanceled, index) => {
+          const novoStatus = isCanceled ? 'Cancelado' : 'Ativo';
+          return novoStatus;
+        });
+        setStatusEventos(novosStatus);
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, []);
-
 
   const handleCheckBanner = (bannerData) => {
     try {
@@ -76,7 +74,7 @@ function HomeAdmin() {
   };
 
   try {
-    // Envie a solicitação POST usando axios
+    // Envie a solicitação Patch usando axios
     const response = await axios.patch(`http://localhost:5000/show/${idShow}/banner`, formData, { headers });
 
     // Lide com a resposta
@@ -117,11 +115,16 @@ function HomeAdmin() {
     console.log('id do evento: ',eventoDelete);
 
     try {
-      // Use o eventoDelete diretamente para obter o ID do evento
-      const response = await axios.patch(`http://localhost:5000/show/${eventoDelete}/cancel`);
+      
+      const response = await axios.patch(`http://localhost:5000/show/${eventoDelete}/cancel`, {
+        headers: {
+          Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MzA0ODQ4ODY5NDl9.o0d1AIzyF9GSRQG6abcAijkaWx_jaRq0RD4Ka3tjQIQ',
+        },
+      });
+    
       console.log('Resposta ao excluir:', response.data);
 
-      // Atualize a lista de eventos após excluir
+     
       
 
       // Feche o modal
@@ -150,6 +153,11 @@ function HomeAdmin() {
       console.error('Erro ao obter informações do evento:', error.message);
     }
   };
+
+  const handleEstatistic =(eventId)=>{
+    
+    history.push('/estatisticas', {eventId} );
+  }
 
   return (
     <div className="home_body">
@@ -204,7 +212,6 @@ function HomeAdmin() {
         
       >
         <div className="modalFile">
-          {/* Conteúdo do modal, incluindo o formulário de upload de imagem */}
           <input type="file" onChange={handleUpload} />
           <button onClick={handleCloseModalBanner}>Enviar</button>
         </div>
@@ -220,11 +227,12 @@ function HomeAdmin() {
                 <th>Título</th>
                 <th>Data</th>
                 <th>Endereço</th>
+                <th>Status</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              {eventos.map((evento) => (
+              {eventos.map((evento,index) => (
                 <tr key={evento.id}>
                   <td> <img
                       className="bannerImg"
@@ -239,6 +247,7 @@ function HomeAdmin() {
                   <td>
                     {evento.address.street + " - " + evento.address.number}
                   </td>
+                  <td>{statusEventos[index]}</td>
                   <td>
                     <div className="acoesBotoes">
                       <Link to="/editareventos">
@@ -249,6 +258,9 @@ function HomeAdmin() {
                         onClick={() => handleOpenModal(evento.id)}
                         alt="Excluir"
                       />
+                      
+                      <img src={Estatistic} alt=""  onClick={()=>handleEstatistic(evento.id)}  />
+                      
                     </div>
                   </td>
                 </tr>

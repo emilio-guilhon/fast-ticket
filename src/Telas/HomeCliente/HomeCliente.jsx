@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./HomeCliente.css";
-import NavbarCliente from "../../User/NavbarCliente/NavbarCliente";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import NavbarCliente from "../../User/NavbarCliente/NavbarCliente";
 
-function HomeCliente() {
+
+function Home_Visitante() {
   const [eventosPrioritarios, setEventosPrioritarios] = useState([]);
   const [eventosRegulares, setEventosRegulares] = useState([]);
 
@@ -22,6 +22,7 @@ function HomeCliente() {
         const prioritarios = eventos.filter((evento) => evento.priority === true);
         console.log('prioritarios', prioritarios)
         const regulares = eventos.filter((evento) => evento.priority !== true);
+        console.log('Regulares: ',regulares);
 
         setEventosPrioritarios(prioritarios);
         setEventosRegulares(regulares);
@@ -33,12 +34,18 @@ function HomeCliente() {
     fetchData();
   }, []);
 
+  const handleGetinfos =async(eventId)=> {
+    console.log(eventId);
+
+    const response = await axios.get(`http://localhost:5000/show/${eventId}`);
+    console.log(response.data);
+    localStorage.setItem('infoShow',JSON.stringify(response));
+  }
   return (
     <div>
+      <NavbarCliente/>
       <>
-        <NavbarCliente />
-        <>
-          <div className="body">
+      <div className="body">
             <div className="Eventos">
               <p className="titulo-principal">Eventos em destaque :</p>
               <div className="Evento-principal">
@@ -46,26 +53,33 @@ function HomeCliente() {
                     <div key={evento.id} className="evento-container">
                       <img src={evento.banner} className="eventoBanner" alt="" />
                       <div className="infosPrioridade">
-                        <p className="dataPrioridade">{evento.date}</p> {/* Substitua isso pela propriedade correta */}
+                        <p className="dataPrioridade">{evento.date}</p> 
                         <p className="tituloPrioridade">{evento.title}</p>
                         <p className="enderecoPrioridade">{evento.address.street}</p>
-                        <Link to ="infosevento"><button className="verDetalhesPrioridade">Ver detalhes</button></Link>
+                        <Link to="/infoseventocliente"><button className="verDetalhesPrioridade" onClick={()=>handleGetinfos(evento.id)}>Ver detalhes</button></Link>
                       </div>
                     </div>
                   ))}
                 </div>
               <p className="titulo-demaisEventos">Demais eventos:</p>
               <div className="Demais-eventos">
-                <div className="x"></div>
-                <div className="y"></div>
-                <div className="z"></div>
-              </div>
+                      {eventosRegulares.map((evento, index) => (
+                        <div key={index} className={`evento evento-${index}`}>
+                          <img src={evento.banner} className="eventobannerRegular" alt="eventoBannerRegular" />
+                          <p className="dataRegular">{evento.date}</p>
+                          <p className="tituloRegular">{evento.title}</p>
+                          <p className="enderecoRegular">{evento.address.street}</p>
+                          <Link to="/infoseventocliente"><button className="verDetalhesRegular" onClick={()=>handleGetinfos(evento.id)}>Ver detalhes</button></Link>
+                         
+                        </div>
+                      ))}
+                    </div>
             </div>
           </div>
         </>
-      </>
+      
     </div>
   );
 }
 
-export default HomeCliente;
+export default Home_Visitante;

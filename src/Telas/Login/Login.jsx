@@ -23,10 +23,12 @@ function Login() {
       if (response.status === 200) {
         // Login bem-sucedido, armazene o token
         const token = response.data.token;
-        localStorage.setItem("authToken", token);
+        localStorage.setItem("UserToken", token);
+        
 
         const response2 = await axios.get(`http://localhost:5000/user`);
         setUser(response2.data);
+        console.log('dados: ', response2.data);
         const param = response2.data.items.length;
         
         // Redirecione para a página principal

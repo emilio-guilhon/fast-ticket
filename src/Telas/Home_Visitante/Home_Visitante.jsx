@@ -34,7 +34,13 @@ function Home_Visitante() {
     fetchData();
   }, []);
 
+  const handleGetinfos =async(eventId)=> {
+    console.log(eventId);
 
+    const response = await axios.get(`http://localhost:5000/show/${eventId}`);
+    console.log(response.data);
+    localStorage.setItem('infoShow',JSON.stringify(response));
+  }
   return (
     <div>
       <Navbar />
@@ -50,7 +56,7 @@ function Home_Visitante() {
                         <p className="dataPrioridade">{evento.date}</p> 
                         <p className="tituloPrioridade">{evento.title}</p>
                         <p className="enderecoPrioridade">{evento.address.street}</p>
-                        <Link to ="infosevento"><button className="verDetalhesPrioridade">Ver detalhes</button></Link>
+                        <Link to="/infosevento"><button className="verDetalhesPrioridade" onClick={()=>handleGetinfos(evento.id)}>Ver detalhes</button></Link>
                       </div>
                     </div>
                   ))}
@@ -60,9 +66,10 @@ function Home_Visitante() {
                       {eventosRegulares.map((evento, index) => (
                         <div key={index} className={`evento evento-${index}`}>
                           <img src={evento.banner} className="eventobannerRegular" alt="eventoBannerRegular" />
-                          <p> {evento.date}</p>
-                          <p>{evento.title}</p>
-                          <p>{evento.address.street}</p>
+                          <p className="dataRegular">{evento.date}</p>
+                          <p className="tituloRegular">{evento.title}</p>
+                          <p className="enderecoRegular">{evento.address.street}</p>
+                          <Link to="/infosevento"><button className="verDetalhesRegular" onClick={()=>handleGetinfos(evento.id)}>Ver detalhes</button></Link>
                          
                         </div>
                       ))}

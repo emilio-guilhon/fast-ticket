@@ -1,6 +1,6 @@
 .container {
   width: 100vw;
-  height: 100vh;
+  height: 150vh;
 
   display: flex;
   align-items: center;
@@ -38,6 +38,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  
 }
 .container form .inputContainer {
   width: 80%;
@@ -72,11 +73,9 @@
   border-radius: 20px;
   color: white;
   font-size: 25px;
-  font-family: Newsreader;
-  font-weight: 400;
   letter-spacing: 1.25;
-  margin-top: 60px;
-  margin-bottom: 20px;
+  margin-top: 54px;
+  margin-bottom: 17px;
 }
 .container form .footer {
   display: flex;
@@ -109,10 +108,16 @@
   letter-spacing: 1px;
 }
 .wrap-cadastro {
+  margin-top: 10px;
   width: 467px;
-  height: 583px;
+  height: 950px;
   background-color: #ebebeb;
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid black;
+}
+
+.Button{
+margin-top: -20px;
+color: #000;
 }

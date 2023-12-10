@@ -109,6 +109,7 @@ function Cadastro() {
               placeholder="Confirme sua Senha"
             />
           </div>
+         
           <button className="Button" type="submit">
             Cadastrar
           </button>

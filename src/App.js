@@ -13,6 +13,8 @@ import EditarEvento2 from "./Telas_Admin/Editar/EditarEvento2";
 import EditarEvento3 from "./Telas_Admin/Editar/EditarEvento3";
 import Recuperar_SenhaP1 from "./Telas/Recuperar_Senha/Recuperar_SenhaP1"
 import EventosDetalhes from "./Telas/EventosDetalhes/EventosDetalhes";
+import EventosDetalhesCliente from "./Telas/EventosDetalhes/EventosDetalhesCliente";
+import EstatisticaEvento from "./Telas_Admin/Estatisticas/EstatisticaEvento";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <header className="App-header">
         <Router>
           <Switch>
+             <Route path="/estatisticas" component={EstatisticaEvento}/>
+            <Route path="/infoseventocliente" component={EventosDetalhesCliente} />
             <Route path="/infosevento" component ={EventosDetalhes}/>
             <Route path="/recuperarsenha" component ={Recuperar_SenhaP1}/>
             <Route path="/editareventos3" component={EditarEvento3} />
