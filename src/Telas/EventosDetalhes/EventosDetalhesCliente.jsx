@@ -19,7 +19,9 @@ function EventosDetalhesCliente() {
   const [ticket_qnt,setTicket_qnt] = useState(0);
   const [modalIsOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem('UserToken');
- console.log('Bearer '+ token)
+
+ console.log(eventoInfo)
+
 
   const handleOpenModal =()=>{
     setIsOpen(true);
@@ -76,15 +78,18 @@ if (countMeia > 0) {
 }
 
 
-// Agora você pode usar o ingressosArray conforme necessário (por exemplo, enviá-lo para sua API)
+// Enviar para a Api
 console.log(ingressosArray);
+const userToken = `Bearer + ${token}`
 try {
   const response = await axios.post(`http://localhost:5000/show/${id}/ticket`, { tickets: ingressosArray }, {
     headers: {
-      Authorization:`Bearer ${token}`,
+      Authorization: 'Bearer '+ token,
     },
   });
-  
+   console.log('resposta: ',response.data);
+   console.log('Bearer ' + token)
+   console.log('user token : ',userToken);
   if (response.status === 200 || response.status ===201) {
     console.log('Sucesso!');
   }
@@ -122,7 +127,7 @@ handleOpenModal(true);
           <div className='Descricao'>
             <p className='DescricaoTitulo'>Descrição do evento: </p>
             {description}</div>
-          <div className="ingressos">
+          <div className="ingressosTable">
             <p className='IngressosTitulo'>Ingressos disponíveis: </p>
             {tickets.map((ticket, index) => (
               <div key={index}>
