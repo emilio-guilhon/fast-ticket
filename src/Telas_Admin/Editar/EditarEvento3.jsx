@@ -169,9 +169,7 @@ function EditarEvento3() {
                             onClick={() =>
                               handleDeleteTicket(ingresso.tipoIngresso)
                             }
-                          >
-                            Deletar
-                          </button>
+                          ></button>
                         </td>
                       </tr>
                     ))}

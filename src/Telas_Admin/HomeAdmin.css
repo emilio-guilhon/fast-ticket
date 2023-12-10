@@ -15,7 +15,7 @@
   background-color: #3888ff;
   position: absolute; /* Define a posição fixa para que o botão permaneça na tela mesmo ao rolar */
   margin-top: 50px;
-  margin-left: 950px;
+  margin-left: 70%;
   right: 220px; /* Ajuste a distância da direita conforme necessário */
   left: 0;
   width: 228px;
@@ -58,7 +58,7 @@
   font-size: 20pt;
   font-weight: bolder;
   font-family: "Times New Roman", Times, serif;
-  margin-left: 110px;
+  margin-left: calc(18%);
   margin-bottom: -40px;
 }
 
@@ -92,8 +92,7 @@
   width: 110px;
   border-radius: 10px;
   border: 1px solid black;
-  margin-right: 10px;
-  margin-top: 40px;
+  margin-right: 70px;
 }
 .cancelamentoConfirma {
   background-color: rgb(247, 39, 39);
@@ -104,30 +103,35 @@
 .cancelamentoNega:hover {
   background-color: #dbd8d8;
 }
+
 .acoesBotoes button {
   width: 10px;
   height: 10px;
+  display: flex;
+  flex-direction: column;
 }
 .modalInfos p {
   text-align: center;
   margin-top: 30px;
+  width: 400px;
+  margin-left: 40px;
 }
 
-.bannerImg{
+.bannerImg {
   height: 55px;
   width: 130px;
 }
-.modalFile{
+.modalFile {
   display: flex;
   flex-direction: column;
   gap: 90px;
 }
-.modalFile button{
+.modalFile button {
   height: 40px;
   width: 130px;
   border-radius: 20px;
   border: 1px solid black;
 }
-.modalFile button:hover{
+.modalFile button:hover {
   background-color: #d6d4d4;
 }

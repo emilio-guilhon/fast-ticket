@@ -38,7 +38,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  
 }
 .container form .inputContainer {
   width: 80%;
@@ -110,14 +109,14 @@
 .wrap-cadastro {
   margin-top: 10px;
   width: 467px;
-  height: 950px;
+  height: 664px;
   background-color: #ebebeb;
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid black;
 }
 
-.Button{
-margin-top: -20px;
-color: #000;
+.Button {
+  margin-top: -20px;
+  color: #000;
 }
