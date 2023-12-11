@@ -20,8 +20,8 @@ function EstatisticaEvento() {
   const [tipoShow, setTipoShow] = useState('');
   const [ingressos, setIngressos] = useState([]);
   const [ingressoVendido,setIngressoVendido] =useState('');
-  const [ingressoCancelado,setIngressoCancelado] = useState('');
-
+  const [ingressoCancelado, setIngressoCancelado] = useState(0);
+  const cancelados =useState(0);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +31,7 @@ function EstatisticaEvento() {
           },
           
         });
-          console.log(response.data)
+         
         const {
           title,
           date,
@@ -65,6 +65,7 @@ function EstatisticaEvento() {
 
   }, [id]);
 
+  
   return (
     <div className='body'>
       <NavbarAdmin />
@@ -96,15 +97,15 @@ function EstatisticaEvento() {
                   </tr>
                 </thead>
                 <tbody>
-                  {ingressos.map((ingresso, index) => (
-                    <tr key={index}>
-                      <td>{ingresso.ticket_type}</td>
-                      <td>{ingresso.total_quantity}</td>
-                      <td>{ingressoVendido}</td>
-                      <td>{ingressoCancelado}</td>
-                    </tr>
-                  ))}
-                </tbody>
+                      {ingressos.map((ingresso, index) => (
+                        <tr key={index}>
+                          <td>{ingresso.ticket_type}</td>
+                          <td>{ingresso.total_quantity}</td>
+                          <td>{ingresso.total_sold}</td>
+                          <td>{ingressoCancelado}</td>
+                        </tr>
+                      ))}
+                    </tbody>
               </table>
             </div>
             <div className="botaoVoltar">

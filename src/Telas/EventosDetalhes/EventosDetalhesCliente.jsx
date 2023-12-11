@@ -20,6 +20,7 @@ function EventosDetalhesCliente() {
   const [ticket_qnt,setTicket_qnt] = useState(0);
   const [modalIsOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem('UserToken');
+  const [selectedTicketType, setSelectedTicketType] = useState('');
 
  console.log(eventoInfo)
 
@@ -31,6 +32,7 @@ function EventosDetalhesCliente() {
     setIsOpen(false);
   }
   const handleShowTicket = (ticket_type) => {
+    setSelectedTicketType(ticket_type);
     // Verificar se o total de ingressos selecionados é menor que 2
     if (countInteira + countMeia + countMeiaSolidaria < 2) {
       if (ticket_type === 'Inteira') {
@@ -56,10 +58,10 @@ function EventosDetalhesCliente() {
     }
   };
   //função que vai enviar os dados para a Api
-  const handleSendRequest = async(countInteira, countMeia , countMeiaSolidaria) => {
- // Cria um array para armazenar objetos de ingresso
-  const ingressosArray = [];
-
+  const handleSendRequest = async () => {
+    // Cria um array para armazenar objetos de ingresso
+    const ingressosArray = [];
+  
     // Verifica se há ingressos Inteira selecionados
     if (countInteira > 0) {
       ingressosArray.push({
@@ -67,7 +69,7 @@ function EventosDetalhesCliente() {
         quantity: countInteira,
       });
     }
-
+  
     // Verifica se há ingressos Meia selecionados
     if (countMeia > 0) {
       ingressosArray.push({
@@ -75,14 +77,14 @@ function EventosDetalhesCliente() {
         quantity: countMeia,
       });
     }
-    //Veridica se há ingressos Meia Solidária selecionados
-    if (countMeiaSolidaria >0){
+    //Verifica se há ingressos Meia Solidária selecionados
+    if (countMeiaSolidaria > 0) {
       ingressosArray.push({
-        ticket_type:'Meia Solidária',
-        quantity:countMeiaSolidaria,
-      }); 
+        ticket_type: 'Meia Solidária',
+        quantity: countMeiaSolidaria,
+      });
     }
-
+  
     // Enviar para a Api
     console.log(ingressosArray);
     const userToken = `Bearer + ${token}`
@@ -98,13 +100,11 @@ function EventosDetalhesCliente() {
       if (response.status === 200 || response.status ===201) {
         console.log('Sucesso!');
       }
-      
     } catch (error) {
       console.log('Erro:', error);
     }
     handleOpenModal(true);
-
-    }
+  };
   
   return (
     <div className="body">
